@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="utf-8">
+<title>Sample Page</title>
+<meta name="description" content="">
+<meta name="author" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" href="">
+<link rel="stylesheet" href="css/style.min.css">
+<link rel="stylesheet" href="css/show.min.css">
+<script src="js/show.min.js"></script>
+</head>
+<body>
+<div class="content">
+
+	<h1>Slide Show</h1>
+	<nav>
+		<a href="index.html">Go Back</a>
+	</nav>
+
+	<h2>Effect Type: Slide</h2>
+
+	<section class="gida-slider-show" id="ss0">
+		<div class="gida-slider-show-frame">
+			<ul class="gida-slider-show-slides">
+				<li class="scroll" data-img="https://placehold.jp/f99/666/900x1200.png" data-img-sub="https://placehold.jp/f9f/666/900x1200.png">
+					<div class="gida-slider-show-caption line">
+						<div>Caption of the 'line' style</div>
+						<div>The second line</div>
+					</div>
+				</li>
+				<li data-img="https://placehold.jp/9d9/666/1200x900.png">
+					<div class="gida-slider-show-caption circle">
+						<div>Caption of the 'circle' style</div>
+						<div>The second line</div>
+					</div>
+				</li>
+				<li data-img="https://placehold.jp/99f/666/1200x900.png">
+					<div class="gida-slider-show-caption subtitle">
+						Caption of the 'subtitle' style
+					</div>
+				</li>
+			</ul>
+			<div class="gida-slider-show-prev"></div>
+			<div class="gida-slider-show-next"></div>
+		</div>
+		<div class="gida-slider-show-rivets"></div>
+		<script>gida_slider_show_initialize('ss0', { effect_type: 'slide', is_picture_scroll: false });</script>
+	</section>
+
+	<h2>Effect Type: Scroll</h2>
+
+	<section class="gida-slider-show" id="ss1">
+		<div class="gida-slider-show-frame">
+			<ul class="gida-slider-show-slides">
+				<li data-img="https://placehold.jp/f99/666/1200x900.png">
+					<div class="gida-slider-show-caption line">
+						<div>Caption of the 'line' style</div>
+						<div>The second line</div>
+					</div>
+				</li>
+				<li data-img="https://placehold.jp/9d9/666/1200x900.png">
+					<div class="gida-slider-show-caption circle">
+						<div>Caption of the 'circle' style</div>
+						<div>The second line</div>
+					</div>
+				</li>
+				<li data-img="https://placehold.jp/99f/666/1200x900.png">
+					<div class="gida-slider-show-caption subtitle">
+						Caption of the 'subtitle' style
+					</div>
+				</li>
+				<li data-img="https://placehold.jp/ff9/666/1200x900.png">
+					<div class="gida-slider-show-caption subtitle">
+						Caption of the 'subtitle' style
+					</div>
+				</li>
+				<li data-img="https://placehold.jp/fd9/666/1200x900.png">
+					<div class="gida-slider-show-caption subtitle">
+						Caption of the 'subtitle' style
+					</div>
+				</li>
+			</ul>
+			<div class="gida-slider-show-prev"></div>
+			<div class="gida-slider-show-next"></div>
+		</div>
+		<div class="gida-slider-show-rivets"></div>
+		<script>gida_slider_show_initialize('ss1', { effect_type: 'scroll', is_side_slide_visible: true });</script>
+	</section>
+
+	<h2>Effect Type: Fade</h2>
+
+	<section class="gida-slider-show" id="ss2">
+		<div class="gida-slider-show-frame">
+			<ul class="gida-slider-show-slides">
+				<li data-img="https://placehold.jp/f99/666/1200x900.png" data-img-phone="https://placehold.jp/f88/666/600x450.png">
+					<div class="gida-slider-show-caption line">
+						<div>Caption of the 'line' style</div>
+						<div>The second line</div>
+					</div>
+				</li>
+				<li data-img="https://placehold.jp/9d9/666/1200x900.png">
+					<div class="gida-slider-show-caption circle">
+						<div>Caption of the 'circle' style</div>
+						<div>The second line</div>
+					</div>
+				</li>
+				<li data-img="https://placehold.jp/99f/666/1200x900.png">
+					<div class="gida-slider-show-caption">
+						Caption of the 'subtitle' style
+					</div>
+				</li>
+			</ul>
+			<div class="gida-slider-show-prev"></div>
+			<div class="gida-slider-show-next"></div>
+		</div>
+		<div class="gida-slider-show-rivets"></div>
+		<script>gida_slider_show_initialize('ss2', { effect_type: 'fade' });</script>
+	</section>
+
+	<details>
+		<summary>HTML</summary>
+	<pre><code>&lt;section class="gida-slider-show" id="<mark>ss0</mark>"&gt;
+    &lt;div class="gida-slider-show-frame"&gt;
+        &lt;ul class="gida-slider-show-slides"&gt;
+            &lt;li data-img="<mark>https://placehold.jp/f99/666/1200x900.png</mark>"&gt;
+                &lt;div class="gida-slider-show-caption <mark>line</mark>"&gt;
+                    <mark>&lt;div&gt;Caption of the 'line' style&lt;/div&gt;</mark>
+                    <mark>&lt;div&gt;The second line&lt;/div&gt;</mark>
+                &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li data-img="<mark>https://placehold.jp/9d9/666/1200x900.png</mark>"&gt;
+                &lt;div class="gida-slider-show-caption <mark>circle</mark>"&gt;
+                    <mark>&lt;div&gt;Caption of the 'circle' style&lt;/div&gt;</mark>
+                    <mark>&lt;div&gt;The second line&lt;/div&gt;</mark>
+                &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li data-img="<mark>https://placehold.jp/99f/666/1200x900.png</mark>"&gt;
+                &lt;div class="gida-slider-show-caption <mark>subtitle</mark>"&gt;
+                    <mark>Caption of the 'subtitle' style</mark>
+                &lt;/div&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;div class="gida-slider-show-prev"&gt;&lt;/div&gt;
+        &lt;div class="gida-slider-show-next"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="gida-slider-show-rivets"&gt;&lt;/div&gt;
+    &lt;script&gt;gida_slider_show_initialize('<mark>ss0</mark>', <mark>{ options... }</mark>);&lt;/script&gt;
+&lt;/section&gt;</code></pre>
+	</details>
+
+	<h2>Video</h2>
+
+	<section class="gida-slider-show" id="ss-v">
+		<div class="gida-slider-show-frame">
+			<ul class="gida-slider-show-slides">
+				<li data-video="res/sample1.mp4">
+					<div class="gida-slider-show-caption" data-caption="line">
+						<div>Caption of the 'line' style</div>
+						<div>The second line</div>
+					</div>
+				</li>
+				<li data-video="res/sample2.mp4">
+					<div class="gida-slider-show-caption" data-caption="circle">
+						<div>Caption of the 'circle' style</div>
+						<div>The second line</div>
+					</div>
+				</li>
+				<li data-img="https://placehold.jp/99f/666/1200x900.png">
+					<div class="gida-slider-show-caption">
+						Caption of the 'subtitle' style
+					</div>
+				</li>
+			</ul>
+			<div class="gida-slider-show-prev"></div>
+			<div class="gida-slider-show-next"></div>
+		</div>
+		<div class="gida-slider-show-rivets"></div>
+		<script>gida_slider_show_initialize('ss-v', { effect_type: 'slide' });</script>
+	</section>
+
+	<details>
+		<summary>HTML</summary>
+	<pre><code>&lt;section class="gida-slider-show" id="<mark>ss-v</mark>"&gt;
+    &lt;div class="gida-slider-show-frame"&gt;
+        &lt;ul class="gida-slider-show-slides"&gt;
+            &lt;li data-video="<mark>res/sample1.mp4</mark>"&gt;
+                &lt;div class="gida-slider-show-caption <mark>line</mark>"&gt;
+                    <mark>&lt;div&gt;Caption of the 'line' style&lt;/div&gt;</mark>
+                    <mark>&lt;div&gt;The second line&lt;/div&gt;</mark>
+                &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li data-video="<mark>res/sample2.mp4</mark>"&gt;
+                &lt;div class="gida-slider-show-caption <mark>circle</mark>"&gt;
+                    <mark>&lt;div&gt;Caption of the 'circle' style&lt;/div&gt;</mark>
+                    <mark>&lt;div&gt;The second line&lt;/div&gt;</mark>
+                &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li data-img="<mark>https://placehold.jp/99f/666/1200x900.png</mark>"&gt;
+                &lt;div class="gida-slider-show-caption <mark>subtitle</mark>"&gt;
+                    <mark>Caption of the 'subtitle' style</mark>
+                &lt;/div&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;div class="gida-slider-show-prev"&gt;&lt;/div&gt;
+        &lt;div class="gida-slider-show-next"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="gida-slider-show-rivets"&gt;&lt;/div&gt;
+    &lt;script&gt;gida_slider_show_initialize('<mark>ss-v</mark>', <mark>{ options... }</mark>);&lt;/script&gt;
+&lt;/section&gt;</code></pre>
+	</details>
+
+	<h2>Options</h2>
+
+	<pre><code>{
+    effect_type          : 'slide',  // 'scroll' or 'slide' or 'fade'
+    duration_time        : 8,        // [second]
+    transition_time      : 1,        // [second]
+    is_background_visible: true,     // true or false
+    is_random_timing     : true,     // true or false
+    is_side_slide_visible: false,    // true or false
+}</code></pre>
+
+</div>
+</body>
+</html>

@@ -2,62 +2,65 @@
  *
  * Stomp Sample (SCSS)
  *
- * @author Takuto Yanagida @ Space-Time Inc.
- * @version 2019-07-19
+ * @author Takuto Yanagida
+ * @version 2021-06-17
  *
  */
 
+
 @charset 'utf-8';
-
-$slide-show-size-width: 48rem;
-
-@import '../node_modules/stile/dist/sass/all';
-@import '../dist/background-image/background-image';
-@import '../dist/slide-show/slide-show';
+@use "sass:math";
 
 
 :root {
-	font-size: 14px;
-	@include font-responsive-size-interval(600px, 900px, 14px, 16px);
-	@include font-responsive-size-interval(900px, 1800px, 16px, 20px);
-	@include for-big-desktop-up { font-size: 20px; }
+	font-size: 16px;
 }
 
 body {
-	@include font-family;
-	@include font-smoothing;
-	@include font-visible-chrome;
-
-	padding-top: 6rem;
+	padding-top   : 6rem;
 	padding-bottom: 6rem;
-	overflow-x: hidden;
+	overflow-x    : hidden;
 }
 
-.stile {
-	@include layout-side-margin(48rem, 1rem);
-	@include for-tablet-up { @include layout-side-margin(48rem, 2rem); }
+.content {
+	margin   : { left: auto; right: auto; }
+	max-width: 48rem;
+	width    : calc(100% - 4rem);
 
-	@include stile-content;
-	@include stile-option(true);
-	color: hsla(0, 0, 0, 0.75);
+	color: hsla(0, 0%, 0%, 0.75);
 }
 
 .frame-background-image {
-	@include layout-aspect(3, 1);
-	width: 100%;
-}
+	width   : 100%;
+	position: relative;
 
-.frame-background-image-front {
-	@include layout-fill-self;
-	overflow-y: auto;
-	color: #fff;
-
-	pre {
-		@include layout-fill-self;
-		background-color: transparent;
+	&:before {
+		content    : '';
+		display    : block;
+		padding-top: percentage(math.div(1, 3));
 	}
 }
 
-.st-slide-show {
-	@include layout-full-width;
+.frame-background-image > *:first-child,
+.frame-background-image-front,
+.frame-background-image-front pre {
+	position: absolute;
+	top     : 0;
+	left    : 0;
+	right   : 0;
+	bottom  : 0;
+}
+
+.frame-background-image-front {
+	overflow-y: auto;
+	color     : #fff;
+
+	pre { background-color: transparent; }
+}
+
+.gida-slider-show {
+	margin: {
+		left : calc(50% - 50vw);
+		right: calc(50% - 50vw);
+	}
 }
