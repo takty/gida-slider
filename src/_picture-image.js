@@ -3,7 +3,7 @@
  * Image Picture
  *
  * @author Takuto Yanagida
- * @version 2021-06-24
+ * @version 2021-06-28
  *
  */
 
@@ -19,28 +19,30 @@ class PictureImage {
 	constructor(sl) {
 		const p = document.createElement('div');
 		p.classList.add(CLS_PIC);
-		if (sl.classList.contains(CLS_SCROLL)) {
-			p.classList.add(CLS_SCROLL);
-		}
-		const url    = sl.dataset.img;
-		const urlSub = sl.dataset.imgSub;
-		if (url && urlSub) {
-			p.classList.add(CLS_DUAL);
-			this._insertImage(p, urlSub, sl.dataset.imgSubPhone ?? null);
-			this._insertImage(p, url, sl.dataset.imgPhone ?? null);
-		} else {
-			this._insertImage(p, url, sl.dataset.imgPhone ?? null);
+		if (sl.classList.contains(CLS_SCROLL)) p.classList.add(CLS_SCROLL);
+
+		const imgs = sl.querySelectorAll(':scope > img');
+		if (imgs.length) {
+			p.appendChild(imgs[0]);
+			if (1 < imgs.length) {
+				p.classList.add(CLS_DUAL);
+				p.appendChild(imgs[1]);
+			}
+		} else if (sl.dataset.img) {
+			p.appendChild(this._createImage(sl.dataset.img, sl.dataset.imgSrcset ?? null));
+			if (sl.dataset.imgSub) {
+				p.classList.add(CLS_DUAL);
+				p.appendChild(this._createImage(sl.dataset.imgSub, sl.dataset.imgSubSrcset ?? null));
+			}
 		}
 		this.p = p;
 	}
 
-	_insertImage(p, url, urlPh) {
+	_createImage(src, srcset) {
 		const img = document.createElement('img');
-		img.src = url;
-		if (urlPh) {
-			img.srcset = `${url}, ${urlPh} 600w`;
-		}
-		p.insertBefore(img, p.firstChild);
+		img.src = src;
+		if (srcset) img.srcset = srcset;
+		return img;
 	}
 
 	getElement() {

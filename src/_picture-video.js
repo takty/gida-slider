@@ -3,7 +3,7 @@
  * Image Video
  *
  * @author Takuto Yanagida
- * @version 2021-06-24
+ * @version 2021-06-28
  *
  */
 
@@ -16,7 +16,24 @@ class PictureVideo {
 		const p = document.createElement('div');
 		p.classList.add(CLS_VIDEO);
 
-		const v = document.createElement('video');
+		const vs = sl.querySelectorAll(':scope > video');
+		if (1 === vs.length) {
+			const v = vs[0];
+			this._initializeVideo(v);
+			this.v = p.appendChild(v);
+		} else if (sl.dataset.video) {
+			const v = document.createElement('video');
+			this._initializeVideo(v);
+			this.v = p.appendChild(v);
+
+			const s = document.createElement('source');
+			s.setAttribute('src', sl.dataset.video);
+			v.appendChild(s);
+		}
+		this.p = p;
+	}
+
+	_initializeVideo(v) {
 		v.muted = true;
 		v.playsinline = true;
 		v.setAttribute('muted', true);
@@ -25,13 +42,6 @@ class PictureVideo {
 			const ar = v.clientWidth / v.clientHeight;
 			v.dataset.ar = (0 | (ar * 1000)) / 1000;
 		});
-		p.appendChild(v);
-
-		const s = document.createElement('source');
-		s.setAttribute('src', sl.dataset.video);
-		v.appendChild(s);
-		this.p = p;
-		this.v = v;
 	}
 
 	getElement() {

@@ -3,7 +3,7 @@
  * Gida Slider - Show (JS)
  *
  * @author Takuto Yanagida
- * @version 2021-06-25
+ * @version 2021-06-28
  *
  */
 
@@ -98,7 +98,7 @@ function gida_slider_show_initialize(id, opts) {
 
 			sl.style.opacity = 0;  // for avoiding flickering slides on page loading
 			createCaption(sl, timeTran);
-			const p = sl.dataset.video ? new PictureVideo(sl) : new PictureImage(sl);
+			const p = isVideo(sl) ? new PictureVideo(sl) : new PictureImage(sl);
 			const e = sl.querySelector('a') ?? sl;
 			e.insertBefore(p.getElement(), e.firstChild);
 			pics.push(p);
@@ -110,6 +110,12 @@ function gida_slider_show_initialize(id, opts) {
 			case 'fade'  : effect = new TransitionFade(size, slides, timeTran); break;
 			default      : effect = new TransitionSlide(size, slides, timeTran); break;
 		}
+	}
+
+	function isVideo(sl) {
+		if (sl.dataset.video) return true;
+		const vs = sl.querySelectorAll(':scope > video');
+		return 0 < vs.length;
 	}
 
 	function cloneSlides() {

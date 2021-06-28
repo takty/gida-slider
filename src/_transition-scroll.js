@@ -3,7 +3,7 @@
  * Scroll Transition
  *
  * @author Takuto Yanagida
- * @version 2021-06-25
+ * @version 2021-06-29
  *
  */
 
@@ -38,13 +38,14 @@ class TransitionScroll {
 		if (d < 0) d += this._size;
 
 		for (let i = 0; i < d; i += 1) {
-			this._curPos = this.shift(this._curPos, dir, this._time / d);
+			const tf = (d === 1) ? 'ease' : ((i === 0) ? 'ease-in' : ((i === d - 1) ? 'ease-out' : 'linear'));
+			this._curPos = this.shift(this._curPos, dir, this._time / d, tf);
 			await asyncTimeout(Math.floor(this._time * 1000 / d)).set();
 		}
 		this._curIdx = idx;
 	}
 
-	shift(curPos, dir, time) {
+	shift(curPos, dir, time, tf = 'ease') {
 		this._curIdxPsd += dir;
 		if (this._sls.length - 1 < this._curIdxPsd) this._curIdxPsd = 0;
 		if (this._curIdxPsd < 0) this._curIdxPsd = this._sls.length - 1;
@@ -52,7 +53,7 @@ class TransitionScroll {
 		const pos = this._calcPosition(this._curIdxPsd, dir);
 
 		for (let i = 0; i < this._sls.length; i += 1) {
-			const t = (Math.abs(curPos[i] - pos[i]) === 1) ? `transform ${time}s` : '';
+			const t = (Math.abs(curPos[i] - pos[i]) === 1) ? `transform ${time}s ${tf}` : '';
 			this._sls[i].style.transition = t;
 			this._sls[i].style.transform  = `translateX(${100 * pos[i]}%)`;
 		}

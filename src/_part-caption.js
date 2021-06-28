@@ -3,7 +3,7 @@
  * Captions
  *
  * @author Takuto Yanagida
- * @version 2021-06-24
+ * @version 2021-06-28
  *
  */
 
@@ -54,11 +54,13 @@ function _wrapText(c) {
 function onResizeCaption() {
 	if (window.innerWidth < 600) {
 		for (const c of caps) {
+			if (!c) continue;
 			c.classList.remove(c.dataset.caption);
 			c.classList.add('subtitle');
 		}
 	} else {
 		for (const c of caps) {
+			if (!c) continue;
 			c.classList.remove('subtitle');
 			c.classList.add(c.dataset.caption);
 		}
