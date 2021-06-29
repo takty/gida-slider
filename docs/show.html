@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta charset="utf-8">
-<title>Sample Page</title>
+<title>Gida Slider - Show</title>
 <meta name="description" content="">
 <meta name="author" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,7 +15,7 @@
 <body>
 <div class="content">
 
-	<h1>Slide Show</h1>
+	<h1>Gida Slider - Show</h1>
 	<nav>
 		<a href="index.html">Go Back</a>
 	</nav>
@@ -48,7 +48,7 @@
 			<div class="gida-slider-show-next"></div>
 		</div>
 		<div class="gida-slider-show-rivets"></div>
-		<script>gida_slider_show_initialize('ss0', { effect_type: 'slide', is_picture_scroll: false });</script>
+		<script>GIDA.slider_show_initialize('ss0', { effect_type: 'slide', is_picture_scroll: false });</script>
 	</section>
 
 	<h2>Effect Type: Scroll</h2>
@@ -88,7 +88,7 @@
 			<div class="gida-slider-show-next"></div>
 		</div>
 		<div class="gida-slider-show-rivets"></div>
-		<script>gida_slider_show_initialize('ss1', { effect_type: 'scroll', is_side_slide_visible: true });</script>
+		<script>GIDA.slider_show_initialize('ss1', { effect_type: 'scroll', is_side_slide_visible: true });</script>
 	</section>
 
 	<h2>Effect Type: Fade</h2>
@@ -118,7 +118,7 @@
 			<div class="gida-slider-show-next"></div>
 		</div>
 		<div class="gida-slider-show-rivets"></div>
-		<script>gida_slider_show_initialize('ss2', { effect_type: 'fade' });</script>
+		<script>GIDA.slider_show_initialize('ss2', { effect_type: 'fade' });</script>
 	</section>
 
 	<details>
@@ -148,7 +148,7 @@
         &lt;div class="gida-slider-show-next"&gt;&lt;/div&gt;
     &lt;/div&gt;
     &lt;div class="gida-slider-show-rivets"&gt;&lt;/div&gt;
-    &lt;script&gt;gida_slider_show_initialize('<mark>ss0</mark>', <mark>{ options... }</mark>);&lt;/script&gt;
+    &lt;script&gt;GIDA.slider_show_initialize('<mark>ss0</mark>', <mark>{ options... }</mark>);&lt;/script&gt;
 &lt;/section&gt;</code></pre>
 	</details>
 
@@ -180,7 +180,7 @@
 			<div class="gida-slider-show-next"></div>
 		</div>
 		<div class="gida-slider-show-rivets"></div>
-		<script>gida_slider_show_initialize('ss-v', { effect_type: 'slide' });</script>
+		<script>GIDA.slider_show_initialize('ss-v', { effect_type: 'slide' });</script>
 	</section>
 
 	<details>
@@ -210,7 +210,7 @@
         &lt;div class="gida-slider-show-next"&gt;&lt;/div&gt;
     &lt;/div&gt;
     &lt;div class="gida-slider-show-rivets"&gt;&lt;/div&gt;
-    &lt;script&gt;gida_slider_show_initialize('<mark>ss-v</mark>', <mark>{ options... }</mark>);&lt;/script&gt;
+    &lt;script&gt;GIDA.slider_show_initialize('<mark>ss-v</mark>', <mark>{ options... }</mark>);&lt;/script&gt;
 &lt;/section&gt;</code></pre>
 	</details>
 
@@ -220,8 +220,8 @@
     effect_type          : 'slide',  // 'scroll' or 'slide' or 'fade'
     duration_time        : 8,        // [second]
     transition_time      : 1,        // [second]
-    is_background_visible: true,     // true or false
     is_random_timing     : true,     // true or false
+    is_background_visible: true,     // true or false
     is_side_slide_visible: false,    // true or false
 }</code></pre>
 

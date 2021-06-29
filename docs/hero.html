@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="utf-8">
+<title>Gida Slider - Hero</title>
+<meta name="description" content="">
+<meta name="author" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" href="">
+<link rel="stylesheet" href="css/style.min.css">
+<link rel="stylesheet" href="css/hero.min.css">
+<script src="js/hero.min.js"></script>
+</head>
+<body>
+<div class="content">
+
+	<h1>Gida Slider - Hero</h1>
+	<nav>
+		<a href="index.html">Go Back</a>
+	</nav>
+
+	<h2>Effect Type: Slide</h2>
+
+	<div class="frame-hero">
+		<section class="gida-slider-hero" id="ss0">
+			<div class="gida-slider-hero-frame">
+				<ul class="gida-slider-hero-slides">
+					<li class="scroll" data-img="https://placehold.jp/f99/666/900x1200.png" data-img-sub="https://placehold.jp/f9f/666/900x1200.png"></li>
+					<li data-img="https://placehold.jp/9d9/666/1200x900.png"></li>
+					<li data-img="https://placehold.jp/99f/666/1200x900.png"></li>
+				</ul>
+			</div>
+			<script>GIDA.slider_hero_initialize('ss0', { effect_type: 'slide' });</script>
+		</section>
+	</div>
+
+	<h2>Effect Type: Scroll</h2>
+
+	<div class="frame-hero">
+		<section class="gida-slider-hero" id="ss1">
+			<div class="gida-slider-hero-frame">
+				<ul class="gida-slider-hero-slides">
+					<li data-img="https://placehold.jp/f99/666/1200x900.png"></li>
+					<li data-img="https://placehold.jp/9d9/666/1200x900.png"></li>
+					<li data-img="https://placehold.jp/99f/666/1200x900.png"></li>
+				</ul>
+			</div>
+			<script>GIDA.slider_hero_initialize('ss1', { effect_type: 'scroll' });</script>
+		</section>
+	</div>
+
+	<h2>Effect Type: Fade</h2>
+
+	<div class="frame-hero">
+		<section class="gida-slider-hero" id="ss2">
+			<div class="gida-slider-hero-frame">
+				<ul class="gida-slider-hero-slides">
+					<li data-img="https://placehold.jp/f99/666/1200x900.png"></li>
+					<li data-img="https://placehold.jp/9d9/666/1200x900.png"></li>
+					<li data-img="https://placehold.jp/99f/666/1200x900.png"></li>
+				</ul>
+			</div>
+			<script>GIDA.slider_hero_initialize('ss2', { effect_type: 'fade' });</script>
+		</section>
+		<div class="frame-hero-front">
+			<pre><code>&lt;section class="gida-slider-hero" id="<mark>ss0</mark>"&gt;
+    &lt;div class="gida-slider-hero-frame"&gt;
+        &lt;ul class="gida-slider-hero-slides"&gt;
+            &lt;li data-img="<mark>https://placehold.jp/f99/666/1200x900.png</mark>"&gt;&lt;/li&gt;
+            &lt;li data-img="<mark>https://placehold.jp/9d9/666/1200x900.png</mark>"&gt;&lt;/li&gt;
+            &lt;li data-img="<mark>https://placehold.jp/99f/666/1200x900.png</mark>"&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+    &lt;script&gt;GIDA.slider_hero_initialize('<mark>ss0</mark>', <mark>{ options... }</mark>);&lt;/script&gt;
+&lt;/section&gt;</code></pre>
+		</div>
+	</div>
+
+	<h2>Video</h2>
+
+	<div class="frame-hero">
+		<section class="gida-slider-hero" id="ss-v">
+			<div class="gida-slider-hero-frame">
+				<ul class="gida-slider-hero-slides">
+					<li data-video="res/sample1.mp4"></li>
+					<li data-video="res/sample2.mp4"></li>
+					<li data-img="https://placehold.jp/99f/666/1200x900.png"></li>
+				</ul>
+			</div>
+			<script>GIDA.slider_hero_initialize('ss-v', { effect_type: 'slide' });</script>
+		</section>
+		<div class="frame-hero-front">
+			<pre><code>&lt;section class="gida-slider-hero" id="<mark>ss-v</mark>"&gt;
+    &lt;div class="gida-slider-hero-frame"&gt;
+        &lt;ul class="gida-slider-hero-slides"&gt;
+            &lt;li data-video="<mark>res/sample1.mp4</mark>"&gt;&lt;/li&gt;
+            &lt;li data-video="<mark>res/sample2.mp4</mark>"&gt;&lt;/li&gt;
+            &lt;li data-img="<mark>https://placehold.jp/99f/666/1200x900.png</mark>"&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+    &lt;script&gt;GIDA.slider_hero_initialize('<mark>ss-v</mark>', <mark>{ options... }</mark>);&lt;/script&gt;
+&lt;/section&gt;</code></pre>
+		</div>
+	</div>
+
+	<h2>Options</h2>
+
+	<pre><code>{
+    effect_type     : 'slide',  // 'scroll' or 'slide' or 'fade'
+    duration_time   : 8,        // [second]
+    transition_time : 1,        // [second]
+    is_random_timing: true,     // true or false
+}</code></pre>
+
+</div>
+</body>
+</html>

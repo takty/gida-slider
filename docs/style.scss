@@ -3,12 +3,11 @@
  * Stomp Sample (SCSS)
  *
  * @author Takuto Yanagida
- * @version 2021-06-17
+ * @version 2021-06-29
  *
  */
 
 
-@charset 'utf-8';
 @use "sass:math";
 
 
@@ -30,7 +29,7 @@ body {
 	color: hsla(0, 0%, 0%, 0.75);
 }
 
-.frame-background-image {
+.frame-hero {
 	width   : 100%;
 	position: relative;
 
@@ -41,9 +40,9 @@ body {
 	}
 }
 
-.frame-background-image > *:first-child,
-.frame-background-image-front,
-.frame-background-image-front pre {
+.frame-hero > *:first-child,
+.frame-hero-front,
+.frame-hero-front pre {
 	position: absolute;
 	top     : 0;
 	left    : 0;
@@ -51,7 +50,7 @@ body {
 	bottom  : 0;
 }
 
-.frame-background-image-front {
+.frame-hero-front {
 	overflow-y: auto;
 	color     : #fff;
 
@@ -60,7 +59,12 @@ body {
 
 .gida-slider-show {
 	margin: {
-		left : calc(50% - 50vw);
-		right: calc(50% - 50vw);
+		left : calc(50% - 50vw + 1rem);
+		right: calc(50% - 50vw + 1rem);
 	}
+}
+
+pre {
+	margin: 0;
+	overflow-x: auto;
 }
