@@ -3,7 +3,7 @@
  * Image Video
  *
  * @author Takuto Yanagida
- * @version 2021-06-28
+ * @version 2021-06-29
  *
  */
 
@@ -40,7 +40,7 @@ class PictureVideo {
 		v.setAttribute('playsinline', true);
 		v.addEventListener('loadedmetadata', () => {
 			const ar = v.clientWidth / v.clientHeight;
-			v.dataset.ar = (0 | (ar * 1000)) / 1000;
+			this.ar = (0 | (ar * 1000)) / 1000;
 		});
 	}
 
@@ -65,6 +65,19 @@ class PictureVideo {
 
 	getDuration(timeDur, timeTran, doRandom) {
 		return this.v.duration - timeTran;
+	}
+
+	onResize() {
+		if (!this.ar) return false;
+		const arFrame = this.p.clientWidth / this.p.clientHeight;
+		if (this.ar < arFrame) {
+			this.v.classList.remove('height');
+			this.v.classList.add('width');
+		} else {
+			this.v.classList.remove('width');
+			this.v.classList.add('height');
+		}
+		return true;
 	}
 
 }

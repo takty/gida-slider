@@ -1,9 +1,9 @@
 /**
  *
- * Slide Show (SCSS)
+ * Gida Slider - Show (SCSS)
  *
  * @author Takuto Yanagida
- * @version 2021-06-24
+ * @version 2021-06-29
  *
  */
 
@@ -19,6 +19,7 @@
 
 	--slide-ratio     : #{percentage(math.div(5, 12))};
 	--slide-size      : cover;
+	--slide-zoom      : gida-slider-hero;
 	--slide-color-dual: #fff6;
 
 	--caption-color           : #fff;
@@ -86,33 +87,6 @@
 		}
 	}
 
-	.gida-slider-show-backgrounds,
-	.gida-slider-show-backgrounds > div {
-		position: absolute;
-		top     : 0;
-		left    : 0;
-		right   : 0;
-		bottom  : 0;
-	}
-	.gida-slider-show-backgrounds {
-		overflow: hidden;
-
-		> div {
-			opacity         : 0;
-			transform       : scale(2, 2);
-			transform-origin: center center;
-
-			background-size    : cover;
-			background-position: center;
-			background-repeat  : no-repeat;
-
-			filter: blur(4px);
-
-			transition-property: opacity;
-			&.visible { opacity: 0.33; }
-		}
-	}
-
 	.gida-slider-show-slides,
 	.gida-slider-show-picture {
 		position: absolute;
@@ -153,7 +127,7 @@
 	.gida-slider-show-picture:not(.scroll) {
 		&.display {
 			transition: transform 10s;
-			transform: scale(1.05);
+			transform: scale(var(--slide-zoom));
 		}
 	}
 
@@ -271,9 +245,52 @@
 		height  : 100%;
 
 		video {
-			position : absolute;
+			position  : absolute;
+			width     : auto;
+			height    : auto;
+			max-width : initial;
+			max-height: initial;
+		}
+		.width {
+			width    : 100%;
 			top      : 50%;
-			transform: translate(0, -50%);
+			transform: translateY(-50%);
+		}
+		.height {
+			height   : 100%;
+			left     : 50%;
+			transform: translateX(-50%);
+		}
+	}
+
+
+	// -------------------------------------------------------------------------
+
+
+	.gida-slider-show-backgrounds,
+	.gida-slider-show-backgrounds > div {
+		position: absolute;
+		top     : 0;
+		left    : 0;
+		right   : 0;
+		bottom  : 0;
+	}
+	.gida-slider-show-backgrounds {
+		overflow: hidden;
+
+		> div {
+			opacity         : 0;
+			transform       : scale(2, 2);
+			transform-origin: center center;
+
+			background-size    : cover;
+			background-position: center;
+			background-repeat  : no-repeat;
+
+			filter: blur(4px);
+
+			transition-property: opacity;
+			&.visible { opacity: 0.33; }
 		}
 	}
 

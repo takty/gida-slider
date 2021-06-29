@@ -1,6 +1,6 @@
 /**
  *
- * Gida Slider - Show (JS)
+ * Gida Slider - Hero (JS)
  *
  * @author Takuto Yanagida
  * @version 2021-06-29
@@ -11,14 +11,8 @@
 window.GIDA = window['GIDA'] ?? {};
 
 
-window.GIDA.slider_show_page = function (id, idx) {
-	const btn = document.getElementById(id + '-rivet-' + idx);
-	if (btn) btn.click();
-}
-
-window.GIDA.slider_show_initialize = function (id, opts) {
-	const NS          = 'gida-slider-show';
-	const CLS_FRAME   = NS + '-frame';
+window.GIDA.slider_hero_initialize = function (id, opts) {
+	const NS          = 'gida-slider-hero';
 	const CLS_SLIDES  = NS + '-slides';
 	const CLS_VISIBLE = 'visible';
 	const CLS_DISPLAY = 'display';
@@ -30,19 +24,10 @@ window.GIDA.slider_show_initialize = function (id, opts) {
 	if (!root) return;
 
 	if (opts === undefined) opts = {};
-	const effectType   = opts['effect_type']           ?? 'slide';
-	const timeDur      = opts['duration_time']         ?? 8;  // [second]
-	const timeTran     = opts['transition_time']       ?? 1;  // [second]
-	const randomTiming = opts['is_random_timing']      ?? false;
-	let bgVisible      = opts['is_background_visible'] ?? true;
-	let sideVisible    = opts['is_side_slide_visible'] ?? false;
-
-	if (effectType !== 'scroll') sideVisible = false;
-	if (sideVisible) {
-		bgVisible = false;
-		const ss = root.querySelector('.' + CLS_SLIDES);
-		ss.style.overflow = 'visible';
-	}
+	const effectType   = opts['effect_type']      ?? 'slide';
+	const timeDur      = opts['duration_time']    ?? 8;  // [second]
+	const timeTran     = opts['transition_time']  ?? 1;  // [second]
+	const randomTiming = opts['is_random_timing'] ?? false;
 
 	const slides = Array.prototype.slice.call(root.querySelectorAll(`.${CLS_SLIDES} > li`));
 	const size   = slides.length;
@@ -57,12 +42,6 @@ window.GIDA.slider_show_initialize = function (id, opts) {
 
 
 	// @include _common.js
-	// @include _part-background.js
-	// @include _part-button.js
-	// @include _part-rivet.js
-	// @include _part-thumbnail.js
-	// @include _part-indicator.js
-	// @include _part-caption.js
 	// @include _transition-slide.js
 	// @include _transition-scroll.js
 	// @include _transition-fade.js
@@ -74,14 +53,8 @@ window.GIDA.slider_show_initialize = function (id, opts) {
 
 
 	initImages();
-	if (bgVisible) initBackgrounds(size, root, slides, timeTran);
 
 	document.addEventListener('DOMContentLoaded', () => {
-		initButtons(size, root, transition);
-		initThumbnails(size);
-		initIndicators(size, root);
-		initRivets(size, root, transition);
-
 		const io = new IntersectionObserver((es) => {
 			for (const e of es) root.classList[e.isIntersecting ? 'add' : 'remove'](CLS_VIEW);
 		}, { rootMargin: `${OFFSET_VIEW}px 0px` });
@@ -100,15 +73,11 @@ window.GIDA.slider_show_initialize = function (id, opts) {
 
 
 	function initImages() {
-		if (effectType === 'scroll' && 1 < size && size < 5) {
-			cloneSlides();
-		}
 		const scroll = root.classList.contains(CLS_SCROLL);
 		for (const sl of slides) {
 			if (scroll) sl.classList.add(CLS_SCROLL);
 
 			sl.style.opacity = 0;  // for avoiding flickering slides on page loading
-			createCaption(sl, timeTran);
 			let p = null;
 			if (isVideo(sl)) {
 				p = new PictureVideo(sl);
@@ -117,12 +86,9 @@ window.GIDA.slider_show_initialize = function (id, opts) {
 				p = new PictureImage(sl);
 			}
 			sl.insertBefore(p.getElement(), sl.firstChild);
-			const e = sl.querySelector('a') ?? sl;
-			e.insertBefore(p.getElement(), e.firstChild);
 			pics.push(p);
 		}
 		if (hasVideo) onResize(onResizeVideo);
-		onResize(onResizeCaption, true);
 		switch (effectType) {
 			case 'slide' : effect = new TransitionSlide(size, slides, timeTran); break;
 			case 'scroll': effect = new TransitionScroll(size, slides, timeTran); break;
@@ -148,15 +114,6 @@ window.GIDA.slider_show_initialize = function (id, opts) {
 		return finish;
 	}
 
-	function cloneSlides() {
-		for (let i = 0; i < size; i += 1) {
-			const sl  = slides[i];
-			const nsl = sl.cloneNode(true);
-			slides.push(nsl);
-			sl.parentNode.appendChild(nsl);
-		}
-	}
-
 
 	// -------------------------------------------------------------------------
 
@@ -175,11 +132,6 @@ window.GIDA.slider_show_initialize = function (id, opts) {
 		for (let i = 0; i < slides.length; i += 1) {
 			pics[i].transition((i % size) === idx, size);
 		}
-		transitionBackgrounds(idx, size);
-		transitionThumbnails(idx);
-		transitionIndicators(idx);
-		transitionRivets(idx);
-
 		await effect.transition(idx, dir);
 		if (onTransitionEnd) onTransitionEnd();
 		curIdx = idx;
@@ -190,7 +142,6 @@ window.GIDA.slider_show_initialize = function (id, opts) {
 		for (let i = 0; i < slides.length; i += 1) {
 			pics[i].display((i % size) === idx);
 		}
-		displayCaption(idx, size);
 		if (size === 1) return;
 
 		const dt = pics[idx].getDuration(timeDur, timeTran, randomTiming);
