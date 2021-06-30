@@ -3,7 +3,7 @@
  * Common Functions (JS)
  *
  * @author Takuto Yanagida
- * @version 2021-06-25
+ * @version 2021-06-30
  *
  */
 
@@ -11,11 +11,9 @@
 const resizeListeners = [];
 
 document.addEventListener('DOMContentLoaded', () => {
-	const ua = window.navigator.userAgent.toLowerCase();
-	const isIe = (ua.indexOf('trident/7') !== -1);
-
-	const opt = (isIe === 'ie11') ? false : { passive: true };
-	window.addEventListener('resize', () => { for (let i = 0; i < resizeListeners.length; i += 1) resizeListeners[i](); }, opt);
+	window.addEventListener('resize', () => {
+		for (let i = 0; i < resizeListeners.length; i += 1) resizeListeners[i]();
+	}, { passive: true });
 });
 
 function onResize(fn, doFirst = false) {
