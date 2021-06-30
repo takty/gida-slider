@@ -3,7 +3,7 @@
  * Stomp Sample (SCSS)
  *
  * @author Takuto Yanagida
- * @version 2021-06-29
+ * @version 2021-06-30
  *
  */
 
@@ -12,13 +12,19 @@
 
 
 :root {
-	font-size: 16px;
+	font-size  : 16px;
+	font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
 }
 
 body {
 	padding-top   : 6rem;
 	padding-bottom: 6rem;
 	overflow-x    : hidden;
+}
+
+pre {
+	margin: 0;
+	overflow-x: auto;
 }
 
 .content {
@@ -62,9 +68,4 @@ body {
 		left : calc(50% - 50vw + 1rem);
 		right: calc(50% - 50vw + 1rem);
 	}
-}
-
-pre {
-	margin: 0;
-	overflow-x: auto;
 }
