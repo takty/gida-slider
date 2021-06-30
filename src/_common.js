@@ -10,28 +10,30 @@
 
 const resizeListeners = [];
 
-document.addEventListener('DOMContentLoaded', () => {
-	window.addEventListener('resize', () => {
-		for (let i = 0; i < resizeListeners.length; i += 1) resizeListeners[i]();
-	}, { passive: true });
-});
-
 function onResize(fn, doFirst = false) {
 	if (doFirst) fn();
 	resizeListeners.push(throttle(fn));
+}
 
-	function throttle(fn) {
-		let isRunning;
-		function run() {
-			isRunning = false;
-			fn();
-		}
-		return () => {
-			if (isRunning) return;
-			isRunning = true;
-			requestAnimationFrame(run);
-		};
+
+// -----------------------------------------------------------------------------
+
+
+document.addEventListener('DOMContentLoaded', () => {
+	window.addEventListener('resize', () => { for (const l of resizeListeners) l(); }, { passive: true });
+});
+
+function throttle(fn) {
+	let isRunning;
+	function run() {
+		isRunning = false;
+		fn();
 	}
+	return () => {
+		if (isRunning) return;
+		isRunning = true;
+		requestAnimationFrame(run);
+	};
 }
 
 function asyncTimeout(ms, fn = () => { }) {
