@@ -3,7 +3,7 @@
  * Gida Slider - Show (JS)
  *
  * @author Takuto Yanagida
- * @version 2021-06-29
+ * @version 2021-07-05
  *
  */
 
@@ -11,12 +11,7 @@
 window.GIDA = window['GIDA'] ?? {};
 
 
-window.GIDA.slider_show_page = function (id, idx) {
-	const btn = document.getElementById(id + '-rivet-' + idx);
-	if (btn) btn.click();
-}
-
-window.GIDA.slider_show_initialize = function (id, opts) {
+window.GIDA.slider_show = function (id, opts) {
 	const NS          = 'gida-slider-show';
 	const CLS_FRAME   = NS + '-frame';
 	const CLS_SLIDES  = NS + '-slides';
@@ -235,4 +230,9 @@ window.GIDA.slider_show_initialize = function (id, opts) {
 		onTransitionEnd: (fn) => { onTransitionEnd = fn; }
 	};
 
+}
+
+window.GIDA.slider_show_page = function (id, idx) {
+	const btn = document.getElementById(id + '-rivet-' + idx);
+	if (btn) btn.click();
 }
