@@ -3,7 +3,7 @@
  * Gulpfile
  *
  * @author Takuto Yanagida
- * @version 2021-06-24
+ * @version 2021-07-07
  *
  */
 
@@ -12,7 +12,7 @@
 
 const gulp = require('gulp');
 
-const { makeJsTask, makeSassTask, makeCopyTask } = require('./common');
+const { makeJsTask, makeSassTask, makeCopyTask, makeTimestampTask } = require('./common');
 
 
 // -----------------------------------------------------------------------------
@@ -55,13 +55,15 @@ const doc_css = gulp.series(sass, makeCopyTask([
 
 const doc_sass = makeSassTask('docs/style.scss', './docs/css');
 
+const doc_timestamp = makeTimestampTask('docs/**/*.html', './docs');
+
 const doc_watch = (done) => {
-	gulp.watch('src/**/*.js', doc_js);
-	gulp.watch('src/**/*.scss', doc_css);
-	gulp.watch('docs/style.scss', doc_sass);
+	gulp.watch('src/**/*.js', gulp.series(doc_js, doc_timestamp));
+	gulp.watch('src/**/*.scss', gulp.series(doc_css, doc_timestamp));
+	gulp.watch('docs/style.scss', gulp.series(doc_sass, doc_timestamp));
 	done();
 };
 
-const doc_build = gulp.parallel(doc_js, doc_css, doc_sass);
+const doc_build = gulp.parallel(doc_js, doc_css, doc_sass, doc_timestamp);
 
 exports.doc = gulp.series(doc_build, doc_watch);

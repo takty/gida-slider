@@ -3,7 +3,7 @@
  * Stomp Sample (SCSS)
  *
  * @author Takuto Yanagida
- * @version 2021-06-30
+ * @version 2021-07-07
  *
  */
 
@@ -20,6 +20,10 @@ body {
 	padding-top   : 6rem;
 	padding-bottom: 6rem;
 	overflow-x    : hidden;
+}
+
+h1 small {
+	font-size: small;
 }
 
 pre {
