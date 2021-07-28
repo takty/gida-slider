@@ -1,6 +1,6 @@
 {
 	"name": "gida-slider",
-	"version": "0.21.7",
+	"version": "1.21.7",
 	"description": "Flexible Slider Component",
 	"author": "Takuto Yanagida",
 	"main": "gulpfile.js",
