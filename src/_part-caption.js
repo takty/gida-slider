@@ -59,7 +59,6 @@ function _wrapDiv(c) {
 					tags.length = 0;
 				}
 			} else {
-				console.log(cs.tagName);
 				tags.push(cs);
 			}
 		}
