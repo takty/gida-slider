@@ -3,7 +3,7 @@
  * Captions
  *
  * @author Takuto Yanagida
- * @version 2021-06-28
+ * @version 2021-08-25
  *
  */
 
@@ -28,13 +28,7 @@ function createCaption(sl, time) {
 		const ds = c.querySelectorAll(':scope > div');
 		for (const d of ds) _wrapText(d);
 		_wrapText(c);
-
-		const ss = c.querySelectorAll(':scope > span');
-		if (0 < ss.length) {
-			const div = document.createElement('div');
-			for (const s of ss) div.appendChild(c.removeChild(s));
-			c.appendChild(div);
-		}
+		_wrapDiv(c);
 	}
 	caps.push(c);
 }
@@ -43,11 +37,37 @@ function _wrapText(c) {
 	for (let i = 0; i < c.childNodes.length; i += 1) {
 		const cs = c.childNodes[i];
 		if (cs.nodeType === 3/*TEXT_NODE*/) {
-			if (cs.nodeValue.trim() === '') continue;
+			const str = cs.nodeValue.trim();
+			if (str === '') continue;
 			const span = document.createElement('span');
-			span.appendChild(document.createTextNode(cs.nodeValue));
+			span.appendChild(document.createTextNode(str));
 			cs.parentNode.replaceChild(span, cs);
 		}
+	}
+}
+
+function _wrapDiv(c) {
+	let tags = [];
+	const css = Array.from(c.childNodes);
+	for (let cs of css) {
+		if (cs.nodeType === 1/*ELEMENT_NODE*/) {
+			if (cs.tagName === 'DIV') {
+				if (tags.length) {
+					const div = document.createElement('div');
+					for (const t of tags) div.appendChild(c.removeChild(t));
+					c.insertBefore(div, cs);
+					tags.length = 0;
+				}
+			} else {
+				console.log(cs.tagName);
+				tags.push(cs);
+			}
+		}
+	}
+	if (tags.length) {
+		const div = document.createElement('div');
+		for (const t of tags) div.appendChild(c.removeChild(t));
+		c.appendChild(div);
 	}
 }
 
