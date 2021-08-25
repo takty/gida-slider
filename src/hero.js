@@ -3,7 +3,7 @@
  * Gida Slider - Hero (JS)
  *
  * @author Takuto Yanagida
- * @version 2021-07-05
+ * @version 2021-08-25
  *
  */
 
@@ -11,7 +11,7 @@
 window.GIDA = window['GIDA'] ?? {};
 
 
-window.GIDA.slider_hero = function (id, opts) {
+window.GIDA.slider_hero = function (id, opts = {}) {
 	const NS          = 'gida-slider-hero';
 	const CLS_SLIDES  = NS + '-slides';
 	const CLS_VISIBLE = 'visible';
@@ -23,7 +23,6 @@ window.GIDA.slider_hero = function (id, opts) {
 	const root = id ? document.getElementById(id) : document.getElementsByClassName(NS)[0];
 	if (!root) return;
 
-	if (opts === undefined) opts = {};
 	const effectType   = opts['effect_type']      ?? 'slide';
 	const timeDur      = opts['duration_time']    ?? 8;  // [second]
 	const timeTran     = opts['transition_time']  ?? 1;  // [second]
