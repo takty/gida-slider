@@ -3,7 +3,7 @@
  * Image Picture
  *
  * @author Takuto Yanagida
- * @version 2021-06-28
+ * @version 2021-08-25
  *
  */
 
@@ -29,19 +29,20 @@ class PictureImage {
 				p.appendChild(imgs[1]);
 			}
 		} else if (sl.dataset.img) {
-			p.appendChild(this._createImage(sl.dataset.img, sl.dataset.imgSrcset ?? null));
+			p.appendChild(this._createImage(sl.dataset.img, sl.dataset.imgSrcset ?? null, sl.dataset.imgSizes ?? null));
 			if (sl.dataset.imgSub) {
 				p.classList.add(CLS_DUAL);
-				p.appendChild(this._createImage(sl.dataset.imgSub, sl.dataset.imgSubSrcset ?? null));
+				p.appendChild(this._createImage(sl.dataset.imgSub, sl.dataset.imgSubSrcset ?? null, sl.dataset.imgSubSizes ?? null));
 			}
 		}
 		this.p = p;
 	}
 
-	_createImage(src, srcset) {
+	_createImage(src, srcset, sizes) {
 		const img = document.createElement('img');
 		img.src = src;
 		if (srcset) img.srcset = srcset;
+		if (sizes)  img.sizes  = sizes;
 		return img;
 	}
 
