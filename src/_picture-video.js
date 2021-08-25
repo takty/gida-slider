@@ -3,7 +3,7 @@
  * Image Video
  *
  * @author Takuto Yanagida
- * @version 2021-06-29
+ * @version 2021-08-25
  *
  */
 
@@ -16,7 +16,7 @@ class PictureVideo {
 		const p = document.createElement('div');
 		p.classList.add(CLS_VIDEO);
 
-		const vs = sl.querySelectorAll(':scope > video');
+		const vs = sl.querySelectorAll(':scope > video, :scope > a > video');
 		if (1 === vs.length) {
 			const v = vs[0];
 			this._initializeVideo(v);

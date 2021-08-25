@@ -13,7 +13,7 @@ const CLS_CAP = NS + '-caption';
 const caps = [];
 
 function createCaption(sl, time) {
-	const c = sl.querySelector(':scope > div');
+	const c = sl.querySelector(':scope > div, :scope > a > div');
 	if (c) {
 		c.style.transitionDuration = time + 's';
 		if (c.className === '') {

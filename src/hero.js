@@ -98,7 +98,7 @@ window.GIDA.slider_hero = function (id, opts = {}) {
 
 	function isVideo(sl) {
 		if (sl.dataset.video) return true;
-		const vs = sl.querySelectorAll(':scope > video');
+		const vs = sl.querySelectorAll(':scope > video, :scope > a > video');
 		return 0 < vs.length;
 	}
 

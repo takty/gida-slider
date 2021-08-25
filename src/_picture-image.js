@@ -21,7 +21,7 @@ class PictureImage {
 		p.classList.add(CLS_PIC);
 		if (sl.classList.contains(CLS_SCROLL)) p.classList.add(CLS_SCROLL);
 
-		const imgs = sl.querySelectorAll(':scope > img');
+		const imgs = sl.querySelectorAll(':scope > img, :scope > a > img');
 		if (imgs.length) {
 			p.appendChild(imgs[0]);
 			if (1 < imgs.length) {
