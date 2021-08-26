@@ -3,7 +3,7 @@
  * Gida Slider - Show (SCSS)
  *
  * @author Takuto Yanagida
- * @version 2021-06-29
+ * @version 2021-08-26
  *
  */
 
@@ -416,6 +416,7 @@
 
 			transform: translate(20% - 50%, -50%) rotate(-45deg);
 		}
+		transition: opacity 0.2s;
 	}
 	.gida-slider-show-prev {
 		left: 0;
@@ -434,6 +435,13 @@
 				border-top-color : var(--btn-color-mark-hover);
 				border-left-color: var(--btn-color-mark-hover);
 			}
+		}
+	}
+	.gida-slider-show-frame[data-disabled='true'] {
+		.gida-slider-show-prev,
+		.gida-slider-show-next {
+			opacity: 0;
+			cursor : default;
 		}
 	}
 

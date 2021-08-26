@@ -3,7 +3,7 @@
  * Buttons
  *
  * @author Takuto Yanagida
- * @version 2021-06-25
+ * @version 2021-08-26
  *
  */
 
@@ -12,6 +12,7 @@ const CLS_PREV = NS + '-prev';
 const CLS_NEXT = NS + '-next';
 
 function initButtons(size, root, transitionFn) {
+	const frame   = root.getElementsByClassName(CLS_FRAME)[0];
 	const prevBtn = root.getElementsByClassName(CLS_PREV)[0];
 	const nextBtn = root.getElementsByClassName(CLS_NEXT)[0];
 	if (size === 1) {
@@ -21,16 +22,15 @@ function initButtons(size, root, transitionFn) {
 	}
 	const prevFn = async () => { await transitionFn(null, -1); };
 	const nextFn = async () => { await transitionFn(null,  1); };
-	if (prevBtn) prevBtn.addEventListener('click', async () => { prevBtn.disabled = true; await prevFn(); prevBtn.disabled = false; });
-	if (nextBtn) nextBtn.addEventListener('click', async () => { nextBtn.disabled = true; await nextFn(); nextBtn.disabled = false; });
-	if (window.ontouchstart === null) _initFlick(root, prevFn, nextFn);
+	if (prevBtn) prevBtn.addEventListener('click', async () => { frame.dataset.disabled = true; await prevFn(); frame.dataset.disabled = false; });
+	if (nextBtn) nextBtn.addEventListener('click', async () => { frame.dataset.disabled = true; await nextFn(); frame.dataset.disabled = false; });
+	if (window.ontouchstart === null) _initFlick(frame, prevFn, nextFn);
 }
 
-function _initFlick(root, prevFn, nextFn) {
+function _initFlick(frame, prevFn, nextFn) {
 	const DX = 50;
 	let stX, mvX, mvY;
 
-	const frame = root.getElementsByClassName(CLS_FRAME)[0];
 	frame.addEventListener('touchstart', (e) => {
 		stX = e.touches[0].pageX;
 		mvX = mvY = null;
