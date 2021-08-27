@@ -8,14 +8,14 @@
 <meta name="author" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="shortcut icon" href="">
-<link rel="stylesheet" href="css/style.min.css?v130517t">
-<link rel="stylesheet" href="css/show.min.css?v130517t">
-<script src="js/show.min.js?v130517t"></script>
+<link rel="stylesheet" href="css/style.min.css?v141624t">
+<link rel="stylesheet" href="css/show.min.css?v141624t">
+<script src="js/show.min.js?v141624t"></script>
 </head>
 <body>
 <div class="content">
 
-	<h1>Gida Slider - Show <small>v130517t</small></h1>
+	<h1>Gida Slider - Show <small>v141624t</small></h1>
 	<nav>
 		<a href="index.html">Go Back</a>
 	</nav>
@@ -57,7 +57,7 @@
 			<div class="gida-slider-show-next"></div>
 		</div>
 		<div class="gida-slider-show-rivets"></div>
-		<script>GIDA.slider_show('ss0', { effect_type: 'slide', is_picture_scroll: false });</script>
+		<script>GIDA.slider_show('ss0', { effect_type: 'slide' });</script>
 	</section>
 
 	<h2>Effect Type: Scroll</h2>
@@ -65,7 +65,7 @@
 	<section class="gida-slider-show" id="ss1">
 		<div class="gida-slider-show-frame">
 			<ul class="gida-slider-show-slides">
-				<li data-img="https://placehold.jp/f99/666/1200x900.png">
+				<li data-img="https://placehold.jp/f99/666/1200x900.png" class="scroll">
 					<div class="gida-slider-show-caption line">
 						<div>Caption of the 'line' style</div>
 						<div>The second line</div>
@@ -97,7 +97,7 @@
 			<div class="gida-slider-show-next"></div>
 		</div>
 		<div class="gida-slider-show-rivets"></div>
-		<script>GIDA.slider_show('ss1', { effect_type: 'scroll', is_side_slide_visible: true });</script>
+		<script>GIDA.slider_show('ss1', { effect_type: 'scroll', side_slide_visible: true });</script>
 	</section>
 
 	<h2>Effect Type: Fade</h2>
@@ -228,12 +228,12 @@
 	<h2>Options</h2>
 
 	<pre><code>{
-    effect_type          : 'slide',  // 'scroll' or 'slide' or 'fade'
-    duration_time        : 8,        // [second]
-    transition_time      : 1,        // [second]
-    is_random_timing     : true,     // true or false
-    is_background_visible: true,     // true or false
-    is_side_slide_visible: false,    // true or false
+    effect_type       : 'slide',  // 'scroll' or 'slide' or 'fade'
+    duration_time     : 8,        // [second]
+    transition_time   : 1,        // [second]
+    is_random_timing  : true,     // true or false
+    background_visible: true,     // true or false
+    side_slide_visible: false,    // true or false
 }</code></pre>
 
 </div>
