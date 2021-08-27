@@ -3,7 +3,7 @@
  * Gida Slider - Show (SCSS)
  *
  * @author Takuto Yanagida
- * @version 2021-08-26
+ * @version 2021-08-27
  *
  */
 
@@ -19,7 +19,7 @@
 
 	--slide-ratio     : #{percentage(math.div(5, 12))};
 	--slide-size      : cover;
-	--slide-zoom      : gida-slider-hero;
+	--slide-zoom      : 1.05;
 	--slide-color-dual: #fff6;
 
 	--caption-color           : #fff;

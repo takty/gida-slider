@@ -3,7 +3,7 @@
  * Gida Slider - Show (JS)
  *
  * @author Takuto Yanagida
- * @version 2021-08-25
+ * @version 2021-08-27
  *
  */
 
@@ -24,12 +24,12 @@ window.GIDA.slider_show = function (id, opts = {}) {
 	const root = id ? document.getElementById(id) : document.getElementsByClassName(NS)[0];
 	if (!root) return;
 
-	const effectType   = opts['effect_type']           ?? 'slide';
-	const timeDur      = opts['duration_time']         ?? 8;  // [second]
-	const timeTran     = opts['transition_time']       ?? 1;  // [second]
-	const randomTiming = opts['is_random_timing']      ?? false;
-	let bgVisible      = opts['is_background_visible'] ?? true;
-	let sideVisible    = opts['is_side_slide_visible'] ?? false;
+	const effectType   = opts['effect_type']        ?? 'slide';  // 'scroll' or 'fade'
+	const timeDur      = opts['duration_time']      ?? 8;  // [second]
+	const timeTran     = opts['transition_time']    ?? 1;  // [second]
+	const randomTiming = opts['is_random_timing']   ?? false;
+	let bgVisible      = opts['background_visible'] ?? true;
+	let sideVisible    = opts['side_slide_visible'] ?? false;
 
 	if (effectType !== 'scroll') sideVisible = false;
 	if (sideVisible) {
