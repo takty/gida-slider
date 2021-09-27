@@ -17,8 +17,9 @@
 }
 
 body {
-	padding-top   : 6rem;
-	padding-bottom: 6rem;
+	min-height    : 200vh;
+	padding-top   : 4vh;
+	padding-bottom: 4vh;
 	overflow-x    : hidden;
 
 	background-color: #fff;
@@ -36,10 +37,14 @@ pre {
 .content {
 	margin   : { left: auto; right: auto; }
 	max-width: 48rem;
-	width    : calc(100% - 4rem);
+	width    : calc(100% - 2vw);
 
 	color: hsla(0, 0%, 0%, 0.75);
 }
+
+
+// -----------------------------------------------------------------------------
+
 
 .frame-hero {
 	width   : 100%;
