@@ -51,15 +51,15 @@ const doc_css = gulp.series(sass, makeCopyTask(['dist/css/*'], './docs/css'));
 
 const doc_sass = makeSassTask('docs/style.scss', './docs/css');
 
+const doc_timestamp = makeTimestampTask('docs/**/*.html', './docs');
 
 const doc_watch = (done) => {
-	const doc_timestamp = makeTimestampTask('docs/**/*.html', './docs');
 	gulp.watch('src/**/*.js', gulp.series(doc_js, doc_timestamp));
 	gulp.watch('src/**/*.scss', gulp.series(doc_css, doc_timestamp));
 	gulp.watch('docs/style.scss', gulp.series(doc_sass, doc_timestamp));
 	done();
 };
 
-const doc_build = gulp.parallel(doc_js, doc_css, doc_sass, makeTimestampTask('docs/**/*.html', './docs'));
+const doc_build = gulp.parallel(doc_js, doc_css, doc_sass, doc_timestamp);
 
 exports.doc = gulp.series(doc_build, doc_watch);
