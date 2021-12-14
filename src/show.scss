@@ -3,7 +3,7 @@
  * Gida Slider - Show (SCSS)
  *
  * @author Takuto Yanagida
- * @version 2021-08-27
+ * @version 2021-12-14
  *
  */
 
@@ -17,7 +17,7 @@
 	--size-height-max: 80vh;
 	--color-frame    : #fff6;
 
-	--slide-ratio     : #{percentage(math.div(5, 12))};
+	--slide-ratio     : 12 / 5;
 	--slide-size      : cover;
 	--slide-zoom      : 1.05;
 	--slide-color-dual: #fff6;
@@ -79,12 +79,8 @@
 		min-height: var(--size-height-min);
 		max-height: var(--size-height-max);
 
-		position: relative;
-		&::before {
-			content: '';
-			display: block;
-			padding-top: var(--slide-ratio);
-		}
+		position    : relative;
+		aspect-ratio: var(--slide-ratio);
 	}
 
 	.gida-slider-show-slides,
@@ -125,6 +121,7 @@
 
 
 	.gida-slider-show-picture:not(.scroll) {
+		transition: transform 5s;
 		&.display {
 			transition: transform 10s;
 			transform: scale(var(--slide-zoom));
