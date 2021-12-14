@@ -3,7 +3,7 @@
  * Gida Slider - Show (JS)
  *
  * @author Takuto Yanagida
- * @version 2021-08-27
+ * @version 2021-12-14
  *
  */
 
@@ -96,6 +96,7 @@ window.GIDA.slider_show = function (id, opts = {}) {
 	function initImages() {
 		if (effectType === 'scroll' && 1 < size && size < 5) {
 			cloneSlides();
+			if (size === 2) cloneSlides();
 		}
 		const scroll = root.classList.contains(CLS_SCROLL);
 		for (const sl of slides) {
