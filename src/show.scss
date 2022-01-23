@@ -1,10 +1,8 @@
 /**
- *
- * Gida Slider - Show (SCSS)
+ * Gida Slider - Show
  *
  * @author Takuto Yanagida
- * @version 2021-12-15
- *
+ * @version 2022-01-23
  */
 
 
@@ -57,10 +55,11 @@
 .gida-slider-show {
 	position  : relative;
 	box-sizing: border-box;
-	*,
-	*::before,
-	*::after {
+
+	:is(*, *::before, *::after) {
 		box-sizing: inherit;
+		margin    : 0;
+		padding   : 0;
 	}
 
 	overflow: hidden;
@@ -70,9 +69,9 @@
 
 
 	.gida-slider-show-frame {
-		margin   : { left: auto; right: auto; }
-		max-width: var(--size-width);
-		width    : 100%;
+		margin-inline: auto;
+		max-width    : var(--size-width);
+		width        : 100%;
 
 		background-color: var(--color-frame);
 
@@ -87,25 +86,19 @@
 		}
 	}
 
-	.gida-slider-show-slides,
-	.gida-slider-show-picture {
+	:is(.gida-slider-show-slides, .gida-slider-show-picture) {
 		position: absolute;
-		top     : 0;
-		left    : 0;
-		right   : 0;
-		bottom  : 0;
-
-		margin : 0;
-		padding: 0;
+		inset   : 0;
 	}
 
 	.gida-slider-show-slides {
 		list-style: none;
 		overflow  : hidden;
 
-		&,
-		> li,
-		> li > a {
+		width : 100%;
+		height: 100%;
+
+		> :is(li, li > a) {
 			width : 100%;
 			height: 100%;
 		}
@@ -128,12 +121,15 @@
 		transition: transform 5s;
 		&.display {
 			transition: transform 10s;
-			transform: scale(var(--slide-zoom));
+			transform : scale(var(--slide-zoom));
 		}
 	}
 
 	.gida-slider-show-picture > img {
 		object-fit: var(--slide-size);
+		@supports (-webkit-appearance: none) and (not (-moz-appearance: none)) and (not (font: -apple-system-body)) {
+			image-rendering: -webkit-optimize-contrast;
+		}
 	}
 
 	.gida-slider-show-picture:not(.dual) > img {
@@ -155,7 +151,7 @@
 		}
 	}
 
-	@media not all and (min-resolution: .001dpcm) { @supports (-webkit-appearance: none) {  // for Safari
+	@supports (font: -apple-system-body) {  // for Safari
 		.gida-slider-show-picture:not(.dual) > img {
 			height: auto;
 
@@ -170,17 +166,17 @@
 
 				&:first-child {
 					object-position: center center;
-					top: 100%;
-					transform: translateY(-100%);
+					top            : 100%;
+					transform      : translateY(-100%);
 				}
 			}
 			&.display > img:first-child {
 				object-position: center center;
-				top: 0%;
-				transform: translateY(0%);
+				top            : 0%;
+				transform      : translateY(0%);
 			}
 		}
-	} }  // for Safari
+	}  // for Safari
 
 	.gida-slider-show-picture.dual {
 		display         : flex;
@@ -209,7 +205,7 @@
 		}
 	}
 
-	@media not all and (min-resolution: .001dpcm) { @supports (-webkit-appearance: none) {  // for Safari
+	@supports (font: -apple-system-body) {  // for Safari
 		.gida-slider-show-picture.dual {
 			> img {
 				height: auto;
@@ -224,18 +220,18 @@
 			&.scroll {
 				> img:last-child {
 					object-position: center center;
-					top: 0%;
-					transform: translateY(0%);
+					top            : 0%;
+					transform      : translateY(0%);
 				}
 				&.display > img:last-child {
 					transition     : opacity 0.8s, transform 9s 0.8s, top 9s 0.8s;
 					object-position: center center;
-					top: 100%;
-					transform: translateY(-100%);
+					top            : 100%;
+					transform      : translateY(-100%);
 				}
 			}
 		}
-	}}  // for Safari
+	}  // for Safari
 
 
 	// -------------------------------------------------------------------------
@@ -268,13 +264,9 @@
 	// -------------------------------------------------------------------------
 
 
-	.gida-slider-show-backgrounds,
-	.gida-slider-show-backgrounds > div {
+	:is(.gida-slider-show-backgrounds, .gida-slider-show-backgrounds > div) {
 		position: absolute;
-		top     : 0;
-		left    : 0;
-		right   : 0;
-		bottom  : 0;
+		inset   : 0;
 	}
 	.gida-slider-show-backgrounds {
 		overflow: hidden;
@@ -321,8 +313,7 @@
 	}
 
 	.gida-slider-show-caption.subtitle {
-		left  : 0;
-		right : 0;
+		inset-inline: 0;
 
 		background-color: var(--caption-color-bg);
 		backdrop-filter : blur(8px);
@@ -334,9 +325,8 @@
 	}
 
 	.gida-slider-show-caption.line {
-		left      : 0;
-		right     : 0;
-		min-height: 50%;
+		inset-inline: 0;
+		min-height  : 50%;
 
 		display        : flex;
 		flex-direction : column;
@@ -357,9 +347,8 @@
 	}
 
 	.gida-slider-show-caption.circle {
-		top  : 0;
-		left : var(--btn-size);
-		right: var(--btn-size);
+		top         : 0;
+		inset-inline: var(--btn-size);
 
 		display        : flex;
 		flex-direction : column;
@@ -368,29 +357,26 @@
 
 		background-image: radial-gradient(circle closest-side at center center, var(--caption-color-bg) 50%, transparent 51%);
 
-		&,
-		& > div {
-			text-align : center;
-			line-height: 1.35;
-			font-size  : var(--caption-size-font-circle);
-		}
 		> div + div { margin-top: 0.5rem; }
+	}
+
+	:is(.gida-slider-show-caption.circle, .gida-slider-show-caption.circle > div) {
+		text-align : center;
+		line-height: 1.35;
+		font-size  : var(--caption-size-font-circle);
 	}
 
 
 	// -------------------------------------------------------------------------
 
 
-	.gida-slider-show-prev,
-	.gida-slider-show-next {
+	:is(.gida-slider-show-prev, .gida-slider-show-next) {
 		user-select: none;
 		cursor     : pointer;
 
-		position: absolute;
-		top     : 0;
-		bottom  : 0;
-		width   : var(--btn-size);
-		margin  : 0;
+		position   : absolute;
+		inset-block: 0;
+		width      : var(--btn-size);
 
 		&::before,
 		&::after {
@@ -420,15 +406,14 @@
 		transition: opacity 0.2s;
 	}
 	.gida-slider-show-prev {
-		left: 0;
+		inset-inline-start: 0;
 	}
 	.gida-slider-show-next {
-		right: 0;
-		transform: rotate(180deg);
+		inset-inline-end: 0;
+		transform       : rotate(180deg);
 	}
 	.gida-slider-show-frame:hover {
-		.gida-slider-show-prev,
-		.gida-slider-show-next {
+		:is(.gida-slider-show-prev, .gida-slider-show-next) {
 			&::before {
 				background-color: var(--btn-color);
 			}
@@ -439,8 +424,7 @@
 		}
 	}
 	.gida-slider-show-frame[data-disabled='true'] {
-		.gida-slider-show-prev,
-		.gida-slider-show-next {
+		:is(.gida-slider-show-prev, .gida-slider-show-next) {
 			opacity: 0;
 			cursor : default;
 		}

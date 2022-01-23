@@ -1,10 +1,8 @@
 /**
- *
- * Gida Slider - Show (JS)
+ * Gida Slider - Show
  *
  * @author Takuto Yanagida
- * @version 2021-12-14
- *
+ * @version 2022-01-21
  */
 
 

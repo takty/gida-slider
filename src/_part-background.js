@@ -1,10 +1,8 @@
 /**
- *
  * Backgrounds
  *
  * @author Takuto Yanagida
  * @version 2021-06-24
- *
  */
 
 

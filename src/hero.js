@@ -1,10 +1,8 @@
 /**
- *
- * Gida Slider - Hero (JS)
+ * Gida Slider - Hero
  *
  * @author Takuto Yanagida
- * @version 2021-08-26
- *
+ * @version 2022-01-21
  */
 
 

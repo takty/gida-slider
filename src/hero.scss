@@ -1,10 +1,8 @@
 /**
- *
- * Gida Slider - Hero (SCSS)
+ * Gida Slider - Hero
  *
  * @author Takuto Yanagida
- * @version 2021-06-29
- *
+ * @version 2022-01-23
  */
 
 
@@ -23,10 +21,11 @@
 .gida-slider-hero {
 	position  : relative;
 	box-sizing: border-box;
-	*,
-	*::before,
-	*::after {
+
+	:is(*, *::before, *::after) {
 		box-sizing: inherit;
+		margin    : 0;
+		padding   : 0;
 	}
 
 	overflow: hidden;
@@ -35,17 +34,9 @@
 	// -------------------------------------------------------------------------
 
 
-	.gida-slider-hero-frame,
-	.gida-slider-hero-slides,
-	.gida-slider-hero-picture {
+	:is(.gida-slider-hero-frame, .gida-slider-hero-slides, .gida-slider-hero-picture) {
 		position: absolute;
-		top     : 0;
-		left    : 0;
-		right   : 0;
-		bottom  : 0;
-
-		margin : 0;
-		padding: 0;
+		inset   : 0;
 	}
 
 	.gida-slider-show-frame {
@@ -56,12 +47,13 @@
 		list-style: none;
 		overflow  : hidden;
 
-		&,
+		width : 100%;
+		height: 100%;
+
 		> li {
 			width : 100%;
 			height: 100%;
-		}
-		> li {
+
 			position: absolute;
 			top     : 0;
 
@@ -83,6 +75,9 @@
 
 	.gida-slider-hero-picture > img {
 		object-fit: var(--slide-size);
+		@supports (-webkit-appearance: none) and (not (-moz-appearance: none)) and (not (font: -apple-system-body)) {
+			image-rendering: -webkit-optimize-contrast;
+		}
 	}
 
 	.gida-slider-hero-picture:not(.dual) > img {
@@ -104,7 +99,7 @@
 		}
 	}
 
-	@media not all and (min-resolution: .001dpcm) { @supports (-webkit-appearance: none) {  // for Safari
+	@supports (font: -apple-system-body) {  // for Safari
 		.gida-slider-hero-picture:not(.dual) > img {
 			height: auto;
 
@@ -129,7 +124,7 @@
 				transform: translateY(0%);
 			}
 		}
-	} }  // for Safari
+	}  // for Safari
 
 	.gida-slider-hero-picture.dual {
 		display         : flex;
@@ -158,7 +153,7 @@
 		}
 	}
 
-	@media not all and (min-resolution: .001dpcm) { @supports (-webkit-appearance: none) {  // for Safari
+	@supports (font: -apple-system-body) {  // for Safari
 		.gida-slider-hero-picture.dual {
 			> img {
 				height: auto;
@@ -184,7 +179,7 @@
 				}
 			}
 		}
-	}}  // for Safari
+	}  // for Safari
 
 
 	// -------------------------------------------------------------------------

@@ -1,10 +1,8 @@
 /**
- *
  * Buttons
  *
  * @author Takuto Yanagida
  * @version 2021-08-26
- *
  */
 
 

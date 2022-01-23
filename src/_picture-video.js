@@ -1,10 +1,8 @@
 /**
- *
  * Image Video
  *
  * @author Takuto Yanagida
  * @version 2021-08-25
- *
  */
 
 

@@ -1,10 +1,8 @@
 /**
- *
  * Scroll Transition
  *
  * @author Takuto Yanagida
  * @version 2021-06-29
- *
  */
 
 
