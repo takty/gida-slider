@@ -2,7 +2,7 @@
  * Gida Slider - Show
  *
  * @author Takuto Yanagida
- * @version 2022-01-21
+ * @version 2022-07-08
  */
 
 
@@ -25,7 +25,7 @@ window.GIDA.slider_show = function (id, opts = {}) {
 	const effectType   = opts['effect_type']        ?? 'slide';  // 'scroll' or 'fade'
 	const timeDur      = opts['duration_time']      ?? 8;  // [second]
 	const timeTran     = opts['transition_time']    ?? 1;  // [second]
-	const randomTiming = opts['is_random_timing']   ?? false;
+	const randomTiming = opts['random_timing']      ?? false;
 	let bgVisible      = opts['background_visible'] ?? true;
 	let sideVisible    = opts['side_slide_visible'] ?? false;
 
