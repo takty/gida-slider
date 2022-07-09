@@ -2,7 +2,7 @@
  * Backgrounds
  *
  * @author Takuto Yanagida
- * @version 2021-06-24
+ * @version 2022-07-09
  */
 
 
@@ -18,9 +18,9 @@ function initBackgrounds(size, root, slides, time) {
 	for (let i = 0; i < size; i += 1) {
 		const sl  = slides[i];
 		const bg  = document.createElement('div');
-		const img = sl.dataset.img ?? sl.dataset.imgLeft;
+		const img = sl.querySelector(':scope img');
 		if (img) {
-			bg.style.backgroundImage    = `url('${img}')`;
+			bg.style.backgroundImage    = `url('${img.src}')`;
 			bg.style.transitionDuration = `${time * 2}s`;
 		}
 		frame.appendChild(bg);
