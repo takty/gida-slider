@@ -2,12 +2,13 @@
  * Gida Slider - Hero
  *
  * @author Takuto Yanagida
- * @version 2022-07-08
+ * @version 2022-07-18
  */
 
 
 window.GIDA = window['GIDA'] ?? {};
 
+document.addEventListener('DOMContentLoaded', () => { window.GIDA._slider_hero_dcl = true; });
 
 window.GIDA.slider_hero = function (id, opts = {}) {
 	const NS          = 'gida-slider-hero';
@@ -51,14 +52,20 @@ window.GIDA.slider_hero = function (id, opts = {}) {
 
 	initImages();
 
-	document.addEventListener('DOMContentLoaded', () => {
+	function onLoaded() {
 		const io = new IntersectionObserver((es) => {
 			for (const e of es) root.classList[e.isIntersecting ? 'add' : 'remove'](CLS_VIEW);
 		}, { rootMargin: `${OFFSET_VIEW}px 0px` });
 		io.observe(root);
 
 		transition(0, 0);
-	});
+	}
+	if (window.GIDA._slider_hero_dcl ?? false) {
+		window.addEventListener('load', onLoaded);
+	} else {
+		document.addEventListener('DOMContentLoaded', onLoaded);
+	}
+
 	if (hasVideo) setTimeout(tryResizeVideo, 100);
 	function tryResizeVideo() {
 		const finish = onResizeVideo();

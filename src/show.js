@@ -2,12 +2,13 @@
  * Gida Slider - Show
  *
  * @author Takuto Yanagida
- * @version 2022-07-08
+ * @version 2022-07-18
  */
 
 
 window.GIDA = window['GIDA'] ?? {};
 
+document.addEventListener('DOMContentLoaded', () => { window.GIDA._slider_show_dcl = true; });
 
 window.GIDA.slider_show = function (id, opts = {}) {
 	const NS          = 'gida-slider-show';
@@ -68,7 +69,7 @@ window.GIDA.slider_show = function (id, opts = {}) {
 	initImages();
 	if (bgVisible) initBackgrounds(size, root, slides, timeTran);
 
-	document.addEventListener('DOMContentLoaded', () => {
+	function onLoaded() {
 		initButtons(size, root, transition);
 		initThumbnails(size);
 		initIndicators(size, root);
@@ -80,7 +81,13 @@ window.GIDA.slider_show = function (id, opts = {}) {
 		io.observe(root);
 
 		transition(0, 0);
-	});
+	}
+	if (window.GIDA._slider_show_dcl ?? false) {
+		window.addEventListener('load', onLoaded);
+	} else {
+		document.addEventListener('DOMContentLoaded', onLoaded);
+	}
+
 	if (hasVideo) setTimeout(tryResizeVideo, 100);
 	function tryResizeVideo() {
 		const finish = onResizeVideo();
