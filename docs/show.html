@@ -8,14 +8,14 @@
 <meta name="author" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="shortcut icon" href="">
-<link rel="stylesheet" href="css/style.min.css?v233509t">
-<link rel="stylesheet" href="css/show.min.css?v233509t">
-<script src="js/show.min.js?v233509t"></script>
+<link rel="stylesheet" href="css/style.min.css?v224142t">
+<link rel="stylesheet" href="css/show.min.css?v224142t">
+<script src="js/show.min.js?v224142t"></script>
 </head>
 <body>
 <div class="content">
 
-	<h1>Gida Slider - Show <small>v233509t</small></h1>
+	<h1>Gida Slider - Show <small>v224142t</small></h1>
 	<nav>
 		<a href="index.html">Go Back</a>
 	</nav>
@@ -57,7 +57,11 @@
 			<div class="gida-slider-show-next"></div>
 		</div>
 		<div class="gida-slider-show-rivets"></div>
-		<script>GIDA.slider_show('ss0', { effect_type: 'slide' });</script>
+		<script>
+		document.addEventListener('DOMContentLoaded', () => {
+			GIDA.slider_show('ss0', { effect_type: 'slide' });
+		});
+		</script>
 	</section>
 
 	<h2>Effect Type: Scroll</h2>
