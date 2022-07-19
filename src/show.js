@@ -2,13 +2,15 @@
  * Gida Slider - Show
  *
  * @author Takuto Yanagida
- * @version 2022-07-18
+ * @version 2022-07-19
  */
 
 
 window.GIDA = window['GIDA'] ?? {};
 
-document.addEventListener('DOMContentLoaded', () => { window.GIDA._slider_show_dcl = true; });
+window.GIDA._rl = 0;
+document.addEventListener('DOMContentLoaded', () => window.GIDA._rl = 1);
+window.addEventListener('load', () => window.GIDA._rl = 2);
 
 window.GIDA.slider_show = function (id, opts = {}) {
 	const NS          = 'gida-slider-show';
@@ -82,7 +84,9 @@ window.GIDA.slider_show = function (id, opts = {}) {
 
 		transition(0, 0);
 	}
-	if (window.GIDA._slider_show_dcl ?? false) {
+	if (2 === window.GIDA._rl) {
+		setTimeout(onLoaded, 0);
+	} else if (1 === window.GIDA._rl) {
 		window.addEventListener('load', onLoaded);
 	} else {
 		document.addEventListener('DOMContentLoaded', onLoaded);
