@@ -8,9 +8,6 @@
 
 window.GIDA = window['GIDA'] ?? {};
 
-window.GIDA._rl = 0;
-document.addEventListener('DOMContentLoaded', () => window.GIDA._rl = 1);
-window.addEventListener('load', () => window.GIDA._rl = 2);
 
 window.GIDA.slider_hero = function (id, opts = {}) {
 	const NS          = 'gida-slider-hero';
@@ -71,12 +68,10 @@ window.GIDA.slider_hero = function (id, opts = {}) {
 		transition(0, 0);
 		console.log(`Gida Slider - Hero (#${id}): started`)
 	}
-	if (2 === window.GIDA._rl) {
-		setTimeout(onLoaded, 0);
-	} else if (1 === window.GIDA._rl) {
-		window.addEventListener('load', onLoaded);
-	} else {
+	if ('loading' === document.readyState) {
 		document.addEventListener('DOMContentLoaded', onLoaded);
+	} else {
+		setTimeout(onLoaded, 0);
 	}
 
 
