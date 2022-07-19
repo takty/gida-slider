@@ -54,13 +54,22 @@ window.GIDA.slider_hero = function (id, opts = {}) {
 
 	initImages();
 
+	if (hasVideo) setTimeout(tryResizeVideo, 100);
+	function tryResizeVideo() {
+		const finish = onResizeVideo();
+		if (!finish) setTimeout(tryResizeVideo, 100);
+	}
+
 	function onLoaded() {
+		initResizeEventHandler();
+
 		const io = new IntersectionObserver((es) => {
 			for (const e of es) root.classList[e.isIntersecting ? 'add' : 'remove'](CLS_VIEW);
 		}, { rootMargin: `${OFFSET_VIEW}px 0px` });
 		io.observe(root);
 
 		transition(0, 0);
+		console.log(`Gida Slider - Hero (#${id}): started`)
 	}
 	if (2 === window.GIDA._rl) {
 		setTimeout(onLoaded, 0);
@@ -68,12 +77,6 @@ window.GIDA.slider_hero = function (id, opts = {}) {
 		window.addEventListener('load', onLoaded);
 	} else {
 		document.addEventListener('DOMContentLoaded', onLoaded);
-	}
-
-	if (hasVideo) setTimeout(tryResizeVideo, 100);
-	function tryResizeVideo() {
-		const finish = onResizeVideo();
-		if (!finish) setTimeout(tryResizeVideo, 100);
 	}
 
 

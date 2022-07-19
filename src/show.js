@@ -71,7 +71,15 @@ window.GIDA.slider_show = function (id, opts = {}) {
 	initImages();
 	if (bgVisible) initBackgrounds(size, root, slides, timeTran);
 
+	if (hasVideo) setTimeout(tryResizeVideo, 100);
+	function tryResizeVideo() {
+		const finish = onResizeVideo();
+		if (!finish) setTimeout(tryResizeVideo, 100);
+	}
+
 	function onLoaded() {
+		initResizeEventHandler();
+
 		initButtons(size, root, transition);
 		initThumbnails(size);
 		initIndicators(size, root);
@@ -83,6 +91,7 @@ window.GIDA.slider_show = function (id, opts = {}) {
 		io.observe(root);
 
 		transition(0, 0);
+		console.log(`Gida Slider - Show (#${id}): started`)
 	}
 	if (2 === window.GIDA._rl) {
 		setTimeout(onLoaded, 0);
@@ -90,12 +99,6 @@ window.GIDA.slider_show = function (id, opts = {}) {
 		window.addEventListener('load', onLoaded);
 	} else {
 		document.addEventListener('DOMContentLoaded', onLoaded);
-	}
-
-	if (hasVideo) setTimeout(tryResizeVideo, 100);
-	function tryResizeVideo() {
-		const finish = onResizeVideo();
-		if (!finish) setTimeout(tryResizeVideo, 100);
 	}
 
 
