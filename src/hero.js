@@ -125,15 +125,20 @@ window.GIDA.slider_hero = function (id, opts = {}) {
 	// -------------------------------------------------------------------------
 
 
-	let curIdx = 0;
-	let stStep = null;
-	let last   = 0;
+	let curIdx    = 0;
+	let stStep    = null;
+	let last      = 0;
+	let stReserve = null;
 
 	async function transition(idx, dir) {
 		[idx, dir] = getIdxDir(idx, dir);
 
 		const t = window.performance.now();
-		if (dir !== 0 && t - last < timeTran * 1000) return;
+		if (dir !== 0 && t - last < timeTran * 1000) {
+			clearTimeout(stReserve);
+			stReserve = setTimeout(() => transition(idx, dir), timeTran * 1000 - (t - last));
+			return;
+		}
 		last = t;
 
 		for (let i = 0; i < slides.length; i += 1) {
