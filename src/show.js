@@ -75,7 +75,7 @@ window.GIDA.slider_show = function (id, opts = {}) {
 		if (!finish) setTimeout(tryResizeVideo, 100);
 	}
 
-	function onLoaded() {
+	onLoad(() => {
 		initResizeEventHandler();
 
 		initButtons(size, root, transition);
@@ -90,12 +90,7 @@ window.GIDA.slider_show = function (id, opts = {}) {
 
 		transition(0, 0);
 		console.log(`Gida Slider - Show (#${id}): started`)
-	}
-	if ('loading' === document.readyState) {
-		document.addEventListener('DOMContentLoaded', onLoaded);
-	} else {
-		setTimeout(onLoaded, 0);
-	}
+	});
 
 
 	// -------------------------------------------------------------------------

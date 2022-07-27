@@ -58,7 +58,7 @@ window.GIDA.slider_hero = function (id, opts = {}) {
 		if (!finish) setTimeout(tryResizeVideo, 100);
 	}
 
-	function onLoaded() {
+	onLoad(() => {
 		initResizeEventHandler();
 
 		const io = new IntersectionObserver((es) => {
@@ -68,12 +68,7 @@ window.GIDA.slider_hero = function (id, opts = {}) {
 
 		transition(0, 0);
 		console.log(`Gida Slider - Hero (#${id}): started`)
-	}
-	if ('loading' === document.readyState) {
-		document.addEventListener('DOMContentLoaded', onLoaded);
-	} else {
-		setTimeout(onLoaded, 0);
-	}
+	});
 
 
 	// -------------------------------------------------------------------------

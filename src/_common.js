@@ -2,7 +2,7 @@
  * Common Functions
  *
  * @author Takuto Yanagida
- * @version 2022-07-19
+ * @version 2022-07-27
  */
 
 
@@ -11,6 +11,14 @@ const resizeListeners = [];
 function onResize(fn, doFirst = false) {
 	if (doFirst) fn();
 	resizeListeners.push(throttle(fn));
+}
+
+function onLoad(fn) {
+	if ('loading' === document.readyState) {
+		document.addEventListener('DOMContentLoaded', fn);
+	} else {
+		setTimeout(fn, 0);
+	}
 }
 
 
