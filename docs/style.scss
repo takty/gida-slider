@@ -2,7 +2,7 @@
  * Styles for Sample
  *
  * @author Takuto Yanagida
- * @version 2021-08-25
+ * @version 2022-07-27
  */
 
 
@@ -76,5 +76,18 @@ pre {
 	margin: {
 		left : calc(50% - 50vw + 1rem);
 		right: calc(50% - 50vw + 1rem);
+	}
+}
+
+.slide-buttons {
+	display        : flex;
+	justify-content: center;
+	gap            : 1rem;
+
+	list-style-type: none;
+
+	button {
+		width : 5rem;
+		height: 3rem;
 	}
 }
