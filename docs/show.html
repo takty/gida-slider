@@ -8,14 +8,14 @@
 <meta name="author" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="shortcut icon" href="">
-<link rel="stylesheet" href="css/style.min.css?v210820t">
-<link rel="stylesheet" href="css/show.min.css?v210820t">
-<script src="js/show.min.js?v210820t"></script>
+<link rel="stylesheet" href="css/style.min.css?v100003t">
+<link rel="stylesheet" href="css/show.min.css?v100003t">
+<script src="js/show.min.js?v100003t"></script>
 </head>
 <body>
 <div class="content">
 
-	<h1>Gida Slider - Show <small>v210820t</small></h1>
+	<h1>Gida Slider - Show <small>v100003t</small></h1>
 	<nav>
 		<a href="index.html">Go Back</a>
 	</nav>
@@ -243,6 +243,49 @@
     background_visible: true,     // true or false
     side_slide_visible: false,    // true or false
 }</code></pre>
+
+	<h2>Slide with Buttons</h2>
+
+	<section class="gida-slider-show" id="ss-b">
+		<div class="gida-slider-show-frame">
+			<ul class="gida-slider-show-slides">
+				<li data-img="https://placehold.jp/f99/666/1200x900.png">
+					<div class="gida-slider-show-caption">
+						The 1st slide.
+					</div>
+				</li>
+				<li data-img="https://placehold.jp/9d9/666/1200x900.png">
+					<div class="gida-slider-show-caption">
+						The 2nd slide.
+					</div>
+				</li>
+				<li data-img="https://placehold.jp/99f/666/1200x900.png">
+					<div class="gida-slider-show-caption">
+						The 3rd slide.
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="gida-slider-show-rivets"></div>
+		<script>GIDA.slider_show('ss-b', { effect_type: 'fade' });</script>
+	</section>
+	<ul class="slide-buttons">
+		<li>
+			<button type="button" onclick="GIDA.sliders['ss-b'].move(0);">
+				Move to 1st Slide
+			</button>
+		</li>
+		<li>
+			<button type="button" onclick="GIDA.sliders['ss-b'].move(1);">
+				Move to 2nd Slide
+			</button>
+		</li>
+		<li>
+			<button type="button" onclick="GIDA.sliders['ss-b'].move(2);">
+				Move to 3rd Slide
+			</button>
+		</li>
+	</ul>
 
 </div>
 </body>
