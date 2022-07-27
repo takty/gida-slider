@@ -2,12 +2,13 @@
  * Gida Slider - Show
  *
  * @author Takuto Yanagida
- * @version 2022-07-19
+ * @version 2022-07-27
  */
 
 
 window.GIDA = window['GIDA'] ?? {};
 
+window.GIDA.sliders = window.GIDA['sliders'] ?? {};
 
 window.GIDA.slider_show = function (id, opts = {}) {
 	const NS          = 'gida-slider-show';
@@ -231,15 +232,14 @@ window.GIDA.slider_show = function (id, opts = {}) {
 	// -------------------------------------------------------------------------
 
 
-	return {
-		next           : () => { transition((curIdx === size - 1) ? 0   : (curIdx + 1),  1); },
-		previous       : () => { transition((curIdx === 0) ? (size - 1) : (curIdx - 1), -1); },
-		onTransitionEnd: (fn) => { onTransitionEnd = fn; }
+	const fs = {
+		move: idx => transition(idx, size === 2 ? 1 : 0),
+		next: ()  => transition((curIdx === size - 1) ? 0          : (curIdx + 1),  1),
+		prev: ()  => transition((curIdx === 0       ) ? (size - 1) : (curIdx - 1), -1),
+
+		onTransitionEnd: fn => { onTransitionEnd = fn; }
 	};
+	window.GIDA.sliders[id] = fs;
+	return fs;
 
-}
-
-window.GIDA.slider_show_page = function (id, idx) {
-	const btn = document.getElementById(id + '-rivet-' + idx);
-	if (btn) btn.click();
 }
