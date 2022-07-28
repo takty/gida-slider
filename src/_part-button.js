@@ -2,16 +2,14 @@
  * Buttons
  *
  * @author Takuto Yanagida
- * @version 2022-07-27
+ * @version 2022-07-28
  */
 
 
 const CLS_PREV   = NS + '-prev';
 const CLS_NEXT   = NS + '-next';
 const CLS_ACTIVE = 'active';
-const DX_FLICK   = 50;
-
-let stFlick = { prev: null, next: null };
+const DX_FLICK   = 32;
 
 function initButtons(size, root, transitionFn) {
 	const frame   = root.getElementsByClassName(CLS_FRAME)[0];
@@ -30,31 +28,31 @@ function initButtons(size, root, transitionFn) {
 }
 
 function _initFlick(frame, prevFn, nextFn, prevBtn, nextBtn) {
-	let stX, mvX;
+	const sts = { prev: null, next: null };
+	let px;
 
-	frame.addEventListener('touchstart', (e) => {
-		stX = e.touches[0].pageX;
-		mvX = null;
-	});
-	frame.addEventListener('touchmove', (e) => {
-		mvX = e.changedTouches[0].pageX;
-	});
-	frame.addEventListener('touchend', (e) => {
-		if (mvX === null) return;
-		if (stX + DX_FLICK < mvX) {  // ->
+	frame.addEventListener('touchstart', e => { px = e.touches[0].pageX; });
+	frame.addEventListener('touchmove', e => {
+		if (px === null) return;
+		const x = e.changedTouches[0].pageX;
+
+		if (px + DX_FLICK < x) {  // ->
 			prevFn();
-			_setCommonFlickProcess(e, prevBtn, 'prev');
-		} else if (mvX < stX - DX_FLICK) {  // <-
+			_setCommonFlickProcess(e, prevBtn, 'prev', sts);
+			px = null;
+		} else if (x < px - DX_FLICK) {  // <-
 			nextFn();
-			_setCommonFlickProcess(e, nextBtn, 'next');
+			_setCommonFlickProcess(e, nextBtn, 'next', sts);
+			px = null;
 		}
 	});
+	frame.addEventListener('touchend', () => { px = null; });
 }
 
-function _setCommonFlickProcess(e, btn, which) {
+function _setCommonFlickProcess(e, btn, which, sts) {
 	if (e.cancelable === true) e.preventDefault();
 	if (!btn) return;
-	clearTimeout(stFlick[which]);
+	clearTimeout(sts[which]);
 	btn.classList.add(CLS_ACTIVE);
-	stFlick[which] = setTimeout(() => { btn.classList.remove(CLS_ACTIVE); }, timeTran * 1000 / 2);
+	sts[which] = setTimeout(() => { btn.classList.remove(CLS_ACTIVE); }, timeTran * 1000 / 2);
 }
