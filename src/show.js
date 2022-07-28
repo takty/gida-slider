@@ -75,6 +75,14 @@ window.GIDA.slider_show = function (id, opts = {}) {
 		if (!finish) setTimeout(tryResizeVideo, 100);
 	}
 
+	const frame = root.getElementsByClassName(CLS_FRAME)[0];
+	if (0 < navigator.maxTouchPoints) {
+		frame.addEventListener('pointerenter', (e) => {
+			const m = (e.pointerType === 'mouse') ? 'remove' : 'add';
+			frame.classList[m]('touch');
+		}, { once: true });
+	}
+
 	onLoad(() => {
 		initResizeEventHandler();
 
