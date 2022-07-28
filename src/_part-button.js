@@ -2,12 +2,16 @@
  * Buttons
  *
  * @author Takuto Yanagida
- * @version 2021-08-26
+ * @version 2022-07-27
  */
 
 
-const CLS_PREV = NS + '-prev';
-const CLS_NEXT = NS + '-next';
+const CLS_PREV   = NS + '-prev';
+const CLS_NEXT   = NS + '-next';
+const CLS_ACTIVE = 'active';
+const DX_FLICK   = 50;
+
+let stFlick = { prev: null, next: null };
 
 function initButtons(size, root, transitionFn) {
 	const frame   = root.getElementsByClassName(CLS_FRAME)[0];
@@ -22,29 +26,35 @@ function initButtons(size, root, transitionFn) {
 	const nextFn = async () => { await transitionFn(null,  1); };
 	if (prevBtn) prevBtn.addEventListener('click', async () => { frame.dataset.disabled = true; await prevFn(); frame.dataset.disabled = false; });
 	if (nextBtn) nextBtn.addEventListener('click', async () => { frame.dataset.disabled = true; await nextFn(); frame.dataset.disabled = false; });
-	if (window.ontouchstart === null) _initFlick(frame, prevFn, nextFn);
+	if (window.ontouchstart === null) _initFlick(frame, prevFn, nextFn, prevBtn, nextBtn);
 }
 
-function _initFlick(frame, prevFn, nextFn) {
-	const DX = 50;
-	let stX, mvX, mvY;
+function _initFlick(frame, prevFn, nextFn, prevBtn, nextBtn) {
+	let stX, mvX;
 
 	frame.addEventListener('touchstart', (e) => {
 		stX = e.touches[0].pageX;
-		mvX = mvY = null;
+		mvX = null;
 	});
 	frame.addEventListener('touchmove', (e) => {
 		mvX = e.changedTouches[0].pageX;
-		mvY = e.changedTouches[0].pageY;
 	});
 	frame.addEventListener('touchend', (e) => {
-		if (mvX === null || mvY === null) return;
-		if (mvX < stX - DX) {  // <-
-			nextFn();
-			if (e.cancelable === true) e.preventDefault();
-		} else if (stX + DX < mvX) {  // ->
+		if (mvX === null) return;
+		if (stX + DX_FLICK < mvX) {  // ->
 			prevFn();
-			if (e.cancelable === true) e.preventDefault();
+			_setCommonFlickProcess(e, prevBtn, 'prev');
+		} else if (mvX < stX - DX_FLICK) {  // <-
+			nextFn();
+			_setCommonFlickProcess(e, nextBtn, 'next');
 		}
 	});
+}
+
+function _setCommonFlickProcess(e, btn, which) {
+	if (e.cancelable === true) e.preventDefault();
+	if (!btn) return;
+	clearTimeout(stFlick[which]);
+	btn.classList.add(CLS_ACTIVE);
+	stFlick[which] = setTimeout(() => { btn.classList.remove(CLS_ACTIVE); }, timeTran * 1000 / 2);
 }
