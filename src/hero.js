@@ -2,7 +2,7 @@
  * Gida Slider - Hero
  *
  * @author Takuto Yanagida
- * @version 2022-07-27
+ * @version 2022-07-28
  */
 
 
@@ -67,7 +67,7 @@ window.GIDA.slider_hero = function (id, opts = {}) {
 		io.observe(root);
 
 		transition(0, 0);
-		console.log(`Gida Slider - Hero (#${id}): started`)
+		console.log(`Gida Slider - Hero (#${id}): started`);
 	});
 
 
