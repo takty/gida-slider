@@ -2,7 +2,7 @@
  * Common Functions
  *
  * @author Takuto Yanagida
- * @version 2022-07-27
+ * @version 2022-08-01
  */
 
 
@@ -62,4 +62,28 @@ function asyncTimeout(ms, fn = () => { }) {
 			}
 		}
 	};
+}
+
+
+// -----------------------------------------------------------------------------
+
+
+function initViewportDetection(root, cls, offset) {
+	const io = new IntersectionObserver((es) => {
+		for (const e of es) root.classList[e.isIntersecting ? 'add' : 'remove'](cls);
+	}, { rootMargin: `${offset}px 0px` });
+	io.observe(root);
+
+	document.addEventListener('visibilitychange', () => {
+		const v = ('hidden' !== document.visibilityState);
+		if (v) {
+			const r = root.getBoundingClientRect();
+			const h = window.innerHeight;
+			if ((0 < r.top && r.top < h) || (0 < r.bottom && r.bottom < h)) {
+				root.classList.add(cls);
+			}
+		} else {
+			root.classList.remove(cls);
+		}
+	});
 }

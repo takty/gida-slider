@@ -2,7 +2,7 @@
  * Gida Slider - Show
  *
  * @author Takuto Yanagida
- * @version 2022-07-29
+ * @version 2022-08-01
  */
 
 
@@ -91,23 +91,7 @@ window.GIDA.slider_show = function (id, opts = {}) {
 		initIndicators(size, root);
 		initRivets(size, root, transition);
 
-		const io = new IntersectionObserver((es) => {
-			for (const e of es) root.classList[e.isIntersecting ? 'add' : 'remove'](CLS_VIEW);
-		}, { rootMargin: `${OFFSET_VIEW}px 0px` });
-		io.observe(root);
-
-		document.addEventListener('visibilitychange', () => {
-			const v = ('hidden' !== document.visibilityState);
-			if (v) {
-				const r = root.getBoundingClientRect();
-				const h = window.innerHeight;
-				if ((0 < r.top && r.top < h) || (0 < r.bottom && r.bottom < h)) {
-					root.classList.add(CLS_VIEW);
-				}
-			} else {
-				root.classList.remove(CLS_VIEW);
-			}
-		});
+		initViewportDetection(root, CLS_VIEW, OFFSET_VIEW);
 
 		transition(0, 0);
 		console.log(`Gida Slider - Show (#${id}): started`);

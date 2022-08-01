@@ -2,7 +2,7 @@
  * Gida Slider - Hero
  *
  * @author Takuto Yanagida
- * @version 2022-07-28
+ * @version 2022-08-01
  */
 
 
@@ -61,10 +61,7 @@ window.GIDA.slider_hero = function (id, opts = {}) {
 	onLoad(() => {
 		initResizeEventHandler();
 
-		const io = new IntersectionObserver((es) => {
-			for (const e of es) root.classList[e.isIntersecting ? 'add' : 'remove'](CLS_VIEW);
-		}, { rootMargin: `${OFFSET_VIEW}px 0px` });
-		io.observe(root);
+		initViewportDetection(root, CLS_VIEW, OFFSET_VIEW);
 
 		transition(0, 0);
 		console.log(`Gida Slider - Hero (#${id}): started`);
