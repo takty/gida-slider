@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta charset="utf-8">
 <title>Gida Slider - Show</title>
 <meta name="description" content="">
 <meta name="author" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="shortcut icon" href="">
-<link rel="stylesheet" href="css/style.min.css?v150423t">
-<link rel="stylesheet" href="css/show.min.css?v150423t">
-<script src="js/show.min.js?v150423t"></script>
+<link rel="icon" href="">
+<link rel="stylesheet" href="css/style.min.css?v091821t">
+<link rel="stylesheet" href="css/show.min.css?v091821t">
+<script src="js/show.min.js?v091821t"></script>
 </head>
 <body>
-<div class="content">
 
-	<h1>Gida Slider - Show <small>v150423t</small></h1>
+<div class="content">
+	<h1>Gida Slider - Show <small>v091821t</small></h1>
+
 	<nav>
 		<a href="index.html">Go Back</a>
 	</nav>
@@ -57,8 +57,9 @@
 			<div class="gida-slider-show-next"></div>
 		</div>
 		<div class="gida-slider-show-rivets"></div>
+
 		<script>
-		window.addEventListener('load', () => {
+		window.addEventListener('DOMContentLoaded', () => {
 			GIDA.slider_show('ss0', { effect_type: 'slide' });
 		});
 		</script>
@@ -101,6 +102,7 @@
 			<div class="gida-slider-show-next"></div>
 		</div>
 		<div class="gida-slider-show-rivets"></div>
+
 		<script>
 		document.addEventListener('DOMContentLoaded', () => {
 			GIDA.slider_show('ss1', { effect_type: 'scroll', side_slide_visible: true });
@@ -135,6 +137,7 @@
 			<div class="gida-slider-show-next"></div>
 		</div>
 		<div class="gida-slider-show-rivets"></div>
+
 		<script>GIDA.slider_show('ss2', { effect_type: 'fade' });</script>
 	</section>
 
@@ -199,6 +202,7 @@
 			<div class="gida-slider-show-next"></div>
 		</div>
 		<div class="gida-slider-show-rivets"></div>
+
 		<script>GIDA.slider_show('ss-v', { effect_type: 'slide' });</script>
 	</section>
 
@@ -267,8 +271,10 @@
 			</ul>
 		</div>
 		<div class="gida-slider-show-rivets"></div>
+
 		<script>GIDA.slider_show('ss-b', { effect_type: 'scroll' });</script>
 	</section>
+
 	<ul class="slide-buttons">
 		<li>
 			<button type="button" onclick="GIDA.sliders['ss-b'].move(0);">
@@ -286,7 +292,7 @@
 			</button>
 		</li>
 	</ul>
-
 </div>
+
 </body>
 </html>

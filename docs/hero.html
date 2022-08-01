@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta charset="utf-8">
 <title>Gida Slider - Hero</title>
 <meta name="description" content="">
 <meta name="author" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="shortcut icon" href="">
-<link rel="stylesheet" href="css/style.min.css?v150423t">
-<link rel="stylesheet" href="css/hero.min.css?v150423t">
-<script src="js/hero.min.js?v150423t"></script>
+<link rel="icon" href="">
+<link rel="stylesheet" href="css/style.min.css?v091821t">
+<link rel="stylesheet" href="css/hero.min.css?v091821t">
+<script src="js/hero.min.js?v091821t"></script>
 </head>
 <body>
-<div class="content">
 
-	<h1>Gida Slider - Hero <small>v150423t</small></h1>
+<div class="content">
+	<h1>Gida Slider - Hero <small>v091821t</small></h1>
+
 	<nav>
 		<a href="index.html">Go Back</a>
 	</nav>
@@ -31,8 +31,9 @@
 					<li data-img="https://placehold.jp/99f/666/1200x900.png"></li>
 				</ul>
 			</div>
+
 			<script>
-			window.addEventListener('load', () => {
+			window.addEventListener('DOMContentLoaded', () => {
 				GIDA.slider_hero('ss0', { effect_type: 'slide' });
 			});
 			</script>
@@ -50,6 +51,7 @@
 					<li data-img="https://placehold.jp/99f/666/1200x900.png"></li>
 				</ul>
 			</div>
+
 			<script>
 			document.addEventListener('DOMContentLoaded', () => {
 				GIDA.slider_hero('ss1', { effect_type: 'scroll' });
@@ -69,8 +71,10 @@
 					<li data-img="https://placehold.jp/99f/666/1200x900.png"></li>
 				</ul>
 			</div>
+
 			<script>GIDA.slider_hero('ss2', { effect_type: 'fade' });</script>
 		</section>
+
 		<div class="frame-hero-front">
 			<pre><code>&lt;section class="gida-slider-hero" id="<mark>ss0</mark>"&gt;
     &lt;div class="gida-slider-hero-frame"&gt;
@@ -96,8 +100,10 @@
 					<li data-img="https://placehold.jp/99f/666/1200x900.png"></li>
 				</ul>
 			</div>
+
 			<script>GIDA.slider_hero('ss-v', { effect_type: 'slide' });</script>
 		</section>
+
 		<div class="frame-hero-front">
 			<pre><code>&lt;section class="gida-slider-hero" id="<mark>ss-v</mark>"&gt;
     &lt;div class="gida-slider-hero-frame"&gt;
@@ -120,7 +126,7 @@
     transition_time: 1,        // [second]
     random_timing  : true,     // true or false
 }</code></pre>
-
 </div>
+
 </body>
 </html>
