@@ -2,7 +2,7 @@
  * Gida Slider - Show
  *
  * @author Takuto Yanagida
- * @version 2022-08-01
+ * @version 2022-09-02
  */
 
 
@@ -16,6 +16,7 @@ window.GIDA.slider_show = function (id, opts = {}) {
 	const CLS_SLIDES  = NS + '-slides';
 	const CLS_VISIBLE = 'visible';
 	const CLS_DISPLAY = 'display';
+	const CLS_START   = 'start';
 	const CLS_VIEW    = 'view';
 	const CLS_PAUSE   = 'pause';
 	const OFFSET_VIEW = 100;
@@ -95,6 +96,7 @@ window.GIDA.slider_show = function (id, opts = {}) {
 
 		transition(0, 0);
 		console.log(`Gida Slider - Show (#${id}): started`);
+		setTimeout(() => root.classList.add(CLS_START), 0);
 	});
 
 

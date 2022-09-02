@@ -2,7 +2,7 @@
  * Gida Slider - Hero
  *
  * @author Takuto Yanagida
- * @version 2022-07-29
+ * @version 2022-09-02
  */
 
 
@@ -29,6 +29,8 @@
 	}
 
 	overflow: hidden;
+	&:not(.start) { opacity: 0; }
+	transition: opacity 0.2s;
 }
 
 
