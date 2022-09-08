@@ -101,8 +101,11 @@ pre {
 			border    : 2rem solid transparent;
 			transition: border-width 1s;
 		}
-		&.display img {
+		&.pre-display img {
 			border-width: 0;
 		}
+	}
+	.gida-slider-show-caption:not(.pre-display) {
+		opacity: 0;
 	}
 }
