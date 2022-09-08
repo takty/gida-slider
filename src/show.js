@@ -2,7 +2,7 @@
  * Gida Slider - Show
  *
  * @author Takuto Yanagida
- * @version 2022-09-02
+ * @version 2022-09-09
  */
 
 
@@ -222,15 +222,10 @@ window.GIDA.slider_show = function (id, opts = {}) {
 			idx = curIdx + dir;
 			if (size - 1 < idx) idx = 0;
 			if (idx < 0) idx = size - 1;
-		} else if (dir === 0) {
-			if (curIdx < idx) {
-				dir = 1;
-				if ((curIdx - (idx - size)) < (idx - curIdx)) dir = -1;
-			}
-			if (idx < curIdx) {
-				dir = -1;
-				if (((idx + size) - curIdx) < (curIdx - idx)) dir = 1;
-			}
+		} else if (dir === 0 && curIdx !== idx) {
+			const r = (curIdx < idx) ? idx - curIdx : idx + size - curIdx;
+			const l = (idx < curIdx) ? curIdx - idx : curIdx + size - idx;
+			dir = (l < r) ? -1 : 1;
 		}
 		return [idx, dir];
 	}
