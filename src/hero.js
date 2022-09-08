@@ -2,7 +2,7 @@
  * Gida Slider - Hero
  *
  * @author Takuto Yanagida
- * @version 2022-09-02
+ * @version 2022-09-09
  */
 
 
@@ -11,14 +11,15 @@ window.GIDA = window['GIDA'] ?? {};
 window.GIDA.sliders = window.GIDA['sliders'] ?? {};
 
 window.GIDA.slider_hero = function (id, opts = {}) {
-	const NS          = 'gida-slider-hero';
-	const CLS_SLIDES  = NS + '-slides';
-	const CLS_VISIBLE = 'visible';
-	const CLS_DISPLAY = 'display';
-	const CLS_START   = 'start';
-	const CLS_VIEW    = 'view';
-	const CLS_PAUSE   = 'pause';
-	const OFFSET_VIEW = 100;
+	const NS              = 'gida-slider-hero';
+	const CLS_SLIDES      = NS + '-slides';
+	const CLS_VISIBLE     = 'visible';
+	const CLS_PRE_DISPLAY = 'pre-display';
+	const CLS_DISPLAY     = 'display';
+	const CLS_START       = 'start';
+	const CLS_VIEW        = 'view';
+	const CLS_PAUSE       = 'pause';
+	const OFFSET_VIEW     = 100;
 
 	const root = id ? document.getElementById(id) : document.getElementsByClassName(NS)[0];
 	if (!root) return;
@@ -135,6 +136,9 @@ window.GIDA.slider_hero = function (id, opts = {}) {
 		}
 		last = t;
 
+		for (let i = 0; i < slides.length; i += 1) {
+			pics[i].preDisplay((i % size) === idx);
+		}
 		for (let i = 0; i < slides.length; i += 1) {
 			pics[i].transition((i % size) === idx, size);
 		}

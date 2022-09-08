@@ -2,7 +2,7 @@
  * Captions
  *
  * @author Takuto Yanagida
- * @version 2021-08-25
+ * @version 2022-09-09
  */
 
 
@@ -84,10 +84,18 @@ function onResizeCaption() {
 	}
 }
 
+function preDisplayCaption(idx, size) {
+	_updateCaptionClass(idx, size, CLS_PRE_DISPLAY);
+}
+
 function displayCaption(idx, size) {
+	_updateCaptionClass(idx, size, CLS_DISPLAY);
+}
+
+function _updateCaptionClass(idx, size, cls) {
 	for (let i = 0; i < caps.length; i += 1) {
 		if (!caps[i]) continue;
-		if ((i % size) === idx) caps[i].classList.add(CLS_DISPLAY);
-		else caps[i].classList.remove(CLS_DISPLAY);
+		if ((i % size) === idx) caps[i].classList.add(cls);
+		else caps[i].classList.remove(cls);
 	}
 }

@@ -2,7 +2,7 @@
  * Image Video
  *
  * @author Takuto Yanagida
- * @version 2021-08-25
+ * @version 2022-09-09
  */
 
 
@@ -52,6 +52,9 @@ class PictureVideo {
 			this.v.play();
 			if (size === 1) this.v.setAttribute('loop', true);
 		}
+	}
+
+	preDisplay(isCur) {
 	}
 
 	display(isCur) {

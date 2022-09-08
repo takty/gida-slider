@@ -2,7 +2,7 @@
  * Image Picture
  *
  * @author Takuto Yanagida
- * @version 2021-08-25
+ * @version 2022-09-09
  */
 
 
@@ -49,6 +49,14 @@ class PictureImage {
 	}
 
 	transition(isCur, size) {
+	}
+
+	preDisplay(isCur) {
+		if (isCur) {
+			this.p.classList.add(CLS_PRE_DISPLAY);
+		} else {
+			this.p.classList.remove(CLS_PRE_DISPLAY);
+		}
 	}
 
 	display(isCur) {
