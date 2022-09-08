@@ -2,7 +2,7 @@
  * Styles for Sample
  *
  * @author Takuto Yanagida
- * @version 2022-07-27
+ * @version 2022-09-09
  */
 
 
@@ -89,5 +89,20 @@ pre {
 	button {
 		width : 5rem;
 		height: 3rem;
+	}
+}
+
+.gida-slider-show.ecs {
+	--size-width : 24rem;
+	--slide-ratio: 100%;
+
+	.gida-slider-show-picture {
+		img {
+			border    : 2rem solid transparent;
+			transition: border-width 1s;
+		}
+		&.display img {
+			border-width: 0;
+		}
 	}
 }

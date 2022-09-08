@@ -7,14 +7,14 @@
 <meta name="author" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="">
-<link rel="stylesheet" href="css/style.min.css?v103823t">
-<link rel="stylesheet" href="css/show.min.css?v103823t">
-<script src="js/show.min.js?v103823t"></script>
+<link rel="stylesheet" href="css/style.min.css?v003140t">
+<link rel="stylesheet" href="css/show.min.css?v003140t">
+<script src="js/show.min.js?v003140t"></script>
 </head>
 <body>
 
 <div class="content">
-	<h1>Gida Slider - Show <small>v103823t</small></h1>
+	<h1>Gida Slider - Show <small>v003140t</small></h1>
 
 	<nav>
 		<a href="index.html">Go Back</a>
@@ -292,6 +292,51 @@
 			</button>
 		</li>
 	</ul>
+
+	<h2>Enlarge the center slide</h2>
+
+	<section class="gida-slider-show ecs" id="ss-ecs">
+		<div class="gida-slider-show-frame">
+			<ul class="gida-slider-show-slides">
+				<li data-img="https://placehold.jp/f99/666/1200x900.png" class="scroll">
+					<div class="gida-slider-show-caption line">
+						<div>Caption of the 'line' style</div>
+						<div>The second line</div>
+					</div>
+				</li>
+				<li data-img="https://placehold.jp/9d9/666/1200x900.png">
+					<div class="gida-slider-show-caption circle">
+						<div>Caption of the 'circle' style</div>
+						<div>The second line</div>
+					</div>
+				</li>
+				<li data-img="https://placehold.jp/99f/666/1200x900.png">
+					<div class="gida-slider-show-caption subtitle">
+						Caption of the 'subtitle' style
+					</div>
+				</li>
+				<li data-img="https://placehold.jp/ff9/666/1200x900.png">
+					<div class="gida-slider-show-caption subtitle">
+						Caption of the 'subtitle' style
+					</div>
+				</li>
+				<li data-img="https://placehold.jp/fd9/666/1200x900.png">
+					<div class="gida-slider-show-caption subtitle">
+						Caption of the 'subtitle' style
+					</div>
+				</li>
+			</ul>
+			<div class="gida-slider-show-prev"></div>
+			<div class="gida-slider-show-next"></div>
+		</div>
+		<div class="gida-slider-show-rivets"></div>
+
+		<script>
+		document.addEventListener('DOMContentLoaded', () => {
+			GIDA.slider_show('ss-ecs', { effect_type: 'scroll', side_slide_visible: true });
+		});
+		</script>
+	</section>
 </div>
 
 </body>
