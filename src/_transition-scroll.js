@@ -2,7 +2,7 @@
  * Scroll Transition
  *
  * @author Takuto Yanagida
- * @version 2022-09-09
+ * @version 2022-11-02
  */
 
 
@@ -10,7 +10,7 @@ class TransitionScroll {
 
 	constructor(size, slides, tranTime) {
 		this._size = size;
-		this._sls  = slides;
+		this._lis  = slides;
 		this._time = tranTime;
 
 		this._cur    = 0;
@@ -19,9 +19,9 @@ class TransitionScroll {
 		this._queue  = [];
 
 		const ps = this._calcPosition(0, 1);
-		for (let i = 0; i < this._sls.length; i += 1) {
-			this._sls[i].style.opacity   = 1;
-			this._sls[i].style.transform = `translateX(${ps[i] * 100}%)`;
+		for (let i = 0; i < this._lis.length; i += 1) {
+			this._lis[i].style.opacity   = 1;
+			this._lis[i].style.transform = `translateX(${ps[i] * 100}%)`;
 		}
 	}
 
@@ -42,9 +42,9 @@ class TransitionScroll {
 			dir = (l < r) ? -1 : 1;
 		}
 		let ps = this._calcPosition(curIdxPsd, dir);
-		for (let i = 0; i < this._sls.length; i += 1) {
-			this._sls[i].style.transition = '';
-			this._sls[i].style.transform  = `translateX(${ps[i] * 100}%)`;
+		for (let i = 0; i < this._lis.length; i += 1) {
+			this._lis[i].style.transition = '';
+			this._lis[i].style.transform  = `translateX(${ps[i] * 100}%)`;
 		}
 		await asyncTimeout(100).set();  // Wait
 
@@ -71,7 +71,7 @@ class TransitionScroll {
 	}
 
 	_shift(curPs, curIdxPsd, dir, time, tf = 'ease') {
-		const lenPsd = this._sls.length;
+		const lenPsd = this._lis.length;
 
 		let idxPsd = curIdxPsd + dir;
 		if (lenPsd - 1 < idxPsd) idxPsd = 0;
@@ -81,14 +81,14 @@ class TransitionScroll {
 
 		for (let i = 0; i < lenPsd; i += 1) {
 			const t = (Math.abs(curPs[i] - ps[i]) === 1) ? `transform ${time}s ${tf}` : '';
-			this._sls[i].style.transition = t;
-			this._sls[i].style.transform  = `translateX(${ps[i] * 100}%)`;
+			this._lis[i].style.transition = t;
+			this._lis[i].style.transform  = `translateX(${ps[i] * 100}%)`;
 		}
 		return [ps, idxPsd];
 	}
 
 	_calcPosition(idxPsd, dir) {
-		const lenPsd = this._sls.length;
+		const lenPsd = this._lis.length;
 		const ps     = new Array(lenPsd);
 
 		const hs = (dir !== -1) ? Math.ceil((lenPsd - 1) / 2) : Math.floor((lenPsd - 1) / 2);

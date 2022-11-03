@@ -2,7 +2,7 @@
  * Gida Slider - Show
  *
  * @author Takuto Yanagida
- * @version 2022-09-02
+ * @version 2022-11-04
  */
 
 
@@ -110,6 +110,7 @@
 
 		overflow           : hidden;
 		backface-visibility: hidden;
+		opacity            : 0;
 
 		> a { display: contents; }
 	}
@@ -232,6 +233,7 @@
 
 		filter: blur(4px);
 
+		transition-duration: calc(var(--transition-time, 1) * 2);
 		transition-property: opacity;
 		&.visible { opacity: 0.33; }
 	}
@@ -257,6 +259,7 @@
 
 	&.display {
 		opacity            : 1;
+		transition-duration: var(--transition-time, 1);
 		transition-property: opacity;
 	}
 	span > span { display: inline-block; }

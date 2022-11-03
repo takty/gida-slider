@@ -2,7 +2,7 @@
  * Gida Slider - Hero
  *
  * @author Takuto Yanagida
- * @version 2022-09-09
+ * @version 2022-11-04
  */
 
 
@@ -11,15 +11,14 @@ window.GIDA = window['GIDA'] ?? {};
 window.GIDA.sliders = window.GIDA['sliders'] ?? {};
 
 window.GIDA.slider_hero = function (id, opts = {}) {
-	const NS              = 'gida-slider-hero';
-	const CLS_SLIDES      = NS + '-slides';
-	const CLS_VISIBLE     = 'visible';
-	const CLS_PRE_DISPLAY = 'pre-display';
-	const CLS_DISPLAY     = 'display';
-	const CLS_START       = 'start';
-	const CLS_VIEW        = 'view';
-	const CLS_PAUSE       = 'pause';
-	const OFFSET_VIEW     = 100;
+	const NS          = 'gida-slider-hero';
+	const CLS_SLIDES  = NS + '-slides';
+	const CLS_VISIBLE = 'visible';
+	const CLS_START   = 'start';
+	const CLS_VIEW    = 'view';
+	const CLS_PAUSE   = 'pause';
+	const CLS_SCROLL  = 'scroll';
+	const OFFSET_VIEW = 100;
 
 	const root = id ? document.getElementById(id) : document.getElementsByClassName(NS)[0];
 	if (!root) return;
@@ -29,34 +28,34 @@ window.GIDA.slider_hero = function (id, opts = {}) {
 	const timeTran     = opts['transition_time'] ?? 1;  // [second]
 	const randomTiming = opts['random_timing']   ?? false;
 
-	const slides = Array.prototype.slice.call(root.querySelectorAll(`.${CLS_SLIDES} > li`));
-	const size   = slides.length;
-	const pics   = [];
-	let effect   = null;
+	const lis  = Array.prototype.slice.call(root.querySelectorAll(`.${CLS_SLIDES} > li`));
+	const size = lis.length;
+	const sss  = [];
+	let effect = null;
 
 	let onTransitionEnd = null;
-	let hasVideo        = false;
 
 
 	// -------------------------------------------------------------------------
 
 
 	// @include _common.js
+	// @include _class-slide.js
+	// @include _class-mount-picture.js
+	// @include _class-mount-video.js
 	// @include _transition-slide.js
 	// @include _transition-scroll.js
 	// @include _transition-fade.js
-	// @include _picture-image.js
-	// @include _picture-video.js
 
 
 	// -------------------------------------------------------------------------
 
 
-	initImages();
+	const hasVideo = initSlides();
 
 	if (hasVideo) setTimeout(tryResizeVideo, 100);
 	function tryResizeVideo() {
-		const finish = onResizeVideo();
+		const finish = onResizeSlide();
 		if (!finish) setTimeout(tryResizeVideo, 100);
 	}
 
@@ -74,44 +73,31 @@ window.GIDA.slider_hero = function (id, opts = {}) {
 	// -------------------------------------------------------------------------
 
 
-	function initImages() {
-		const scroll = root.classList.contains(CLS_SCROLL);
-		for (const sl of slides) {
-			if (scroll) sl.classList.add(CLS_SCROLL);
+	function initSlides() {
+		const isScroll = root.classList.contains(CLS_SCROLL);
+		let hasVideo = false;
 
-			sl.style.opacity = 0;  // for avoiding flickering slides on page loading
-			let p = null;
-			if (isVideo(sl)) {
-				p = new PictureVideo(sl);
-				hasVideo = true;
-			} else {
-				p = new PictureImage(sl);
-			}
-			sl.insertBefore(p.getElement(), sl.firstChild);
-			pics.push(p);
+		for (let i = 0; i < lis.length; i += 1) {
+			if (isScroll) lis[i].classList.add(CLS_SCROLL);
+
+			const ss = new Slide(lis[i], i, false);
+			if ('video' === ss.getType) hasVideo = true;
+			sss.push(ss);
 		}
-		if (hasVideo) onResize(onResizeVideo);
+		onResize(onResizeSlide);
 		switch (effectType) {
-			case 'slide' : effect = new TransitionSlide(size, slides, timeTran); break;
-			case 'scroll': effect = new TransitionScroll(size, slides, timeTran); break;
-			case 'fade'  : effect = new TransitionFade(size, slides, timeTran); break;
-			default      : effect = new TransitionSlide(size, slides, timeTran); break;
+			case 'slide' : effect = new TransitionSlide(size, lis, timeTran); break;
+			case 'scroll': effect = new TransitionScroll(size, lis, timeTran); break;
+			case 'fade'  : effect = new TransitionFade(size, lis, timeTran); break;
+			default      : effect = new TransitionSlide(size, lis, timeTran); break;
 		}
+		return hasVideo;
 	}
 
-	function isVideo(sl) {
-		if (sl.dataset.video) return true;
-		const vs = sl.querySelectorAll(':scope > video, :scope > a > video');
-		return 0 < vs.length;
-	}
-
-	function onResizeVideo() {
+	function onResizeSlide() {
 		let finish = true;
-		for (let i = 0; i < size; i += 1) {
-			const p = pics[i];
-			if (p instanceof PictureVideo) {
-				if (!p.onResize()) finish = false;
-			}
+		for (const ss of sss) {
+			if (!ss.onResize()) finish = false;
 		}
 		return finish;
 	}
@@ -136,12 +122,9 @@ window.GIDA.slider_hero = function (id, opts = {}) {
 		}
 		last = t;
 
-		for (let i = 0; i < slides.length; i += 1) {
-			pics[i].preDisplay((i % size) === idx);
-		}
-		for (let i = 0; i < slides.length; i += 1) {
-			pics[i].transition((i % size) === idx, size);
-		}
+		for (const ss of sss) ss.onPreDisplay(idx, size);
+		for (const ss of sss) ss.transition(idx, size);
+
 		await effect.transition(idx, dir);
 		if (onTransitionEnd) onTransitionEnd();
 		curIdx = idx;
@@ -149,12 +132,10 @@ window.GIDA.slider_hero = function (id, opts = {}) {
 	}
 
 	async function display(idx) {
-		for (let i = 0; i < slides.length; i += 1) {
-			pics[i].display((i % size) === idx);
-		}
+		for (const ss of sss) ss.display(idx, size);
 		if (size === 1) return;
 
-		const dt = pics[idx].getDuration(timeDur, timeTran, randomTiming);
+		const dt = sss[idx].getDuration(timeDur, timeTran, randomTiming);
 		if (stStep) stStep.clear();
 		stStep = asyncTimeout(Math.ceil(dt * 1000), step);
 		await stStep.set();
