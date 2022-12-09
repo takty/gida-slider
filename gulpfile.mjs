@@ -46,15 +46,18 @@ const doc_timestamp = async () => {
 	return makeTimestampTask('docs/**/*.html', './docs');
 }
 
-const fn = await doc_timestamp();
-
-const doc_watch = done => {
+const doc_watch = async done => {
+	const fn = await doc_timestamp();
 	gulp.watch('src/**/*.js', gulp.series(doc_js, fn));
 	gulp.watch('src/**/*.scss', gulp.series(doc_css, fn));
 	gulp.watch('docs/style.scss', gulp.series(doc_sass, fn));
 	done();
 };
 
-const doc_build = gulp.parallel(doc_js, doc_css, doc_sass, fn);
+const doc_build = async done => {
+	const fn = await doc_timestamp();
+	gulp.parallel(doc_js, doc_css, doc_sass, fn);
+	done();
+};
 
 export const doc = gulp.series(doc_build, doc_watch);
